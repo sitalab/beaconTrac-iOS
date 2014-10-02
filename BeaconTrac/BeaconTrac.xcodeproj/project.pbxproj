@@ -115,6 +115,13 @@
 			remoteGlobalIDString = 1867F03D18E2BEA2000A4104;
 			remoteInfo = ATIBeacons;
 		};
+		9957C32D19DDB04D00A24C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1867F03618E2BEA2000A4104 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1867F03D18E2BEA2000A4104;
+			remoteInfo = BeaconTrac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -673,6 +680,7 @@
 			);
 			dependencies = (
 				1867F06518E2BEA2000A4104 /* PBXTargetDependency */,
+				9957C32E19DDB04D00A24C53 /* PBXTargetDependency */,
 			);
 			name = BeaconTracTests;
 			productName = ATIBeaconsTests;
@@ -831,6 +839,11 @@
 			isa = PBXTargetDependency;
 			target = 1867F03D18E2BEA2000A4104 /* BeaconTrac */;
 			targetProxy = 1867F06418E2BEA2000A4104 /* PBXContainerItemProxy */;
+		};
+		9957C32E19DDB04D00A24C53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1867F03D18E2BEA2000A4104 /* BeaconTrac */;
+			targetProxy = 9957C32D19DDB04D00A24C53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -991,7 +1004,6 @@
 		1867F07418E2BEA2000A4104 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeaconTrac.app/BeaconTrac";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1003,9 +1015,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "BeaconTrac/BeaconTracTests-Info.plist";
+				INFOPLIST_FILE = "BeaconTracTests/BeaconTracTests-Info.plist";
 				PRODUCT_NAME = BeaconTracTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeaconTrac.app/BeaconTrac";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1013,7 +1025,6 @@
 		1867F07518E2BEA2000A4104 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeaconTrac.app/BeaconTrac";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1021,9 +1032,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconTrac/BeaconTrac-Prefix.pch";
-				INFOPLIST_FILE = "BeaconTrac/BeaconTracTests-Info.plist";
+				INFOPLIST_FILE = "BeaconTracTests/BeaconTracTests-Info.plist";
 				PRODUCT_NAME = BeaconTracTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeaconTrac.app/BeaconTrac";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
