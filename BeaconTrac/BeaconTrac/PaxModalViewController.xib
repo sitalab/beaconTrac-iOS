@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaxModalViewController">
@@ -27,9 +27,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuw-Qt-MyL">
+                <navigationBar contentMode="scaleToFill" id="fuw-Qt-MyL">
                     <rect key="frame" x="0.0" y="15" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="BeaconTrac" id="skP-HQ-ez5">
                             <barButtonItem key="leftBarButtonItem" title="Cancel" id="JC5-NX-c5j">
@@ -45,28 +45,28 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1q-v7-vMn" userLabel="RegistryDetailsView">
+                <view contentMode="scaleToFill" id="h1q-v7-vMn" userLabel="RegistryDetailsView">
                     <rect key="frame" x="0.0" y="120" width="320" height="155"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Passenger Name" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2wX-6I-CVy">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Passenger Name" minimumFontSize="17" clearButtonMode="always" id="2wX-6I-CVy">
                             <rect key="frame" x="10" y="3" width="300" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Flight Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Hap-Md-zxf">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Flight Number" minimumFontSize="17" clearButtonMode="always" id="Hap-Md-zxf">
                             <rect key="frame" x="10" y="103" width="300" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                         </textField>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FM3-ow-cgB">
+                        <view contentMode="scaleToFill" id="FM3-ow-cgB">
                             <rect key="frame" x="0.0" y="50" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="P9F-JA-PF2" detailTextLabel="EFE-iG-Uma" style="IBUITableViewCellStyleValue1" translatesAutoresizingMaskIntoConstraints="NO" id="Tyk-Io-uCE" userLabel="Type - Table View Cell">
+                        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="P9F-JA-PF2" detailTextLabel="EFE-iG-Uma" style="IBUITableViewCellStyleValue1" id="Tyk-Io-uCE" userLabel="Type - Table View Cell">
                             <rect key="frame" x="0.0" y="53" width="320" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tyk-Io-uCE" id="FmK-CF-pbm">
@@ -90,12 +90,12 @@
                                 </subviews>
                             </tableViewCellContentView>
                         </tableViewCell>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-nq-cCy">
+                        <view contentMode="scaleToFill" id="xSb-nq-cCy">
                             <rect key="frame" x="0.0" y="100" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ijj-ae-Q8W">
+                        <view contentMode="scaleToFill" id="Ijj-ae-Q8W">
                             <rect key="frame" x="0.0" y="150" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,38 +103,38 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your name and select a flight of your choosing to use this application." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="ZXD-m4-YmM">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your name and select a flight of your choosing to use this application." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXD-m4-YmM">
                     <rect key="frame" x="10" y="62" width="300" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G5S-7k-oNV">
+                <view contentMode="scaleToFill" id="G5S-7k-oNV">
                     <rect key="frame" x="0.0" y="120" width="320" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fLa-sK-ONP" userLabel="GranularityView">
+                <view contentMode="scaleToFill" id="fLa-sK-ONP" userLabel="GranularityView">
                     <rect key="frame" x="0.0" y="121" width="320" height="155"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lba-Is-cxS">
+                        <view contentMode="scaleToFill" id="lba-Is-cxS">
                             <rect key="frame" x="0.0" y="50" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gh-Sl-olv">
+                        <view contentMode="scaleToFill" id="5gh-Sl-olv">
                             <rect key="frame" x="0.0" y="100" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwQ-rL-VOv">
+                        <view contentMode="scaleToFill" id="dwQ-rL-VOv">
                             <rect key="frame" x="0.0" y="150" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <tableViewCell contentMode="scaleToFill" fixedFrame="YES" selectionStyle="blue" indentationWidth="10" textLabel="QWw-vZ-wP8" style="IBUITableViewCellStyleDefault" translatesAutoresizingMaskIntoConstraints="NO" id="rWO-ly-LHT">
+                        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="QWw-vZ-wP8" style="IBUITableViewCellStyleDefault" id="rWO-ly-LHT">
                             <rect key="frame" x="0.0" y="3" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWO-ly-LHT" id="z3c-Yw-GDQ">
@@ -151,7 +151,7 @@
                                 </subviews>
                             </tableViewCellContentView>
                         </tableViewCell>
-                        <tableViewCell tag="1" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="blue" indentationWidth="10" textLabel="dax-Kr-aDv" style="IBUITableViewCellStyleDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Za1-4W-IQ4">
+                        <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="dax-Kr-aDv" style="IBUITableViewCellStyleDefault" id="Za1-4W-IQ4">
                             <rect key="frame" x="0.0" y="54" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Za1-4W-IQ4" id="uab-tZ-3IB">
@@ -168,7 +168,7 @@
                                 </subviews>
                             </tableViewCellContentView>
                         </tableViewCell>
-                        <tableViewCell tag="2" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="blue" indentationWidth="10" textLabel="LI3-Wt-V5e" style="IBUITableViewCellStyleDefault" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-c5-NWw">
+                        <tableViewCell tag="2" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="LI3-Wt-V5e" style="IBUITableViewCellStyleDefault" id="gFE-c5-NWw">
                             <rect key="frame" x="0.0" y="103" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gFE-c5-NWw" id="pVr-L3-58d">
@@ -190,8 +190,11 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
