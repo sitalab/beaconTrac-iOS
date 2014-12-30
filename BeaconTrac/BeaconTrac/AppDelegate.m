@@ -44,6 +44,10 @@
     self.brandNamesToUUIDs = [[NSMutableDictionary alloc] init];
     self.arrayOfUniqueMajorIDs = [[NSMutableArray alloc] init];
     locationManager = [[CLLocationManager alloc] init];
+    if ([locationManager respondsToSelector:
+         @selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestAlwaysAuthorization];
+    }
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     geocoder = [[CLGeocoder alloc] init];
