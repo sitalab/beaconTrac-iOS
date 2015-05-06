@@ -10,7 +10,7 @@
 #import "MFSideMenu.h"
 #import "AWCollectionViewDialLayout.h"
 #import "PulsingHaloLayer.h"
-#import "Constants.h"
+#import "AppConstants.h"
 #import "Language.h"
 #import <CoreLocation/CoreLocation.h>
 #import "HTTPRequestCreator.h"

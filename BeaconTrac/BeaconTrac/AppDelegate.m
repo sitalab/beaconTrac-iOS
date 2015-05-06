@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MFSideMenuContainerViewController.h"
 #import "HTTPRequestCreator.h"
-#import "Constants.h"
+#import "AppConstants.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Language.h"
 #import "Flurry.h"

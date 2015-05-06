@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HTTPRequestCreator.h"
-#import "Constants.h"
+#import "AppConstants.h"
 
 static NSMutableDictionary *mapURLsTiming;
 
