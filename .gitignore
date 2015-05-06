@@ -17,7 +17,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 
-Constants.SITA.h
+BeaconTrac/BeaconTrac/AppConstants.h
 
 # CocoaPods
 #
