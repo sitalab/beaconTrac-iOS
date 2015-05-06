@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>OG</string>
+	<string>1-2-go</string>
+	<string>T5</string>
+	<string>Turkmenistan Airlines</string>
+	<string>S7</string>
+	<string>Siberia Airlines</string>
+	<string>MO</string>
+	<string>Abu Dhabi Amiri Flight</string>
+	<string>GB</string>
+	<string>ABX Air</string>
+	<string>ZA</string>
+	<string>Access Air</string>
+	<string>ZY</string>
+	<string>Ada Air</string>
+	<string>JP</string>
+	<string>Adria Airways</string>
+	<string>RE</string>
+	<string>Aer Arann</string>
+	<string>EI</string>
+	<string>Aer Lingus</string>
+	<string>JY</string>
+	<string>Aereonauticamilitare</string>
+	<string>EE</string>
+	<string>Aero Airlines</string>
+	<string>EM</string>
+	<string>Aero Benin</string>
+	<string>JR</string>
+	<string>Aero California</string>
+	<string>GV</string>
+	<string>Aero Flight</string>
+	<string>QL</string>
+	<string>Aero Lanka</string>
+	<string>YP</string>
+	<string>Aero Lloyd (YP)</string>
+	<string>2D</string>
+	<string>Aero VIP</string>
+	<string>DW</string>
+	<string>Aero-Charter Ukraine</string>
+	<string>BF</string>
+	<string>Aero-Service</string>
+	<string>2B</string>
+	<string>Aerocondor</string>
+	<string>SU</string>
+	<string>Aeroflot Russian Airlines</string>
+	<string>5N</string>
+	<string>Aeroflot-Nord</string>
+	<string>AR</string>
+	<string>Aerolineas Argentinas</string>
+	<string>2K</string>
+	<string>Aerolineas Galapagos (Aerogal)</string>
+	<string>AM</string>
+	<string>AeroMexico</string>
+	<string>VW</string>
+	<string>Aeromar</string>
+	<string>BQ</string>
+	<string>Aeromar</string>
+	<string>QO</string>
+	<string>Aeromexpress</string>
+	<string>HT</string>
+	<string>Aeromist-Kharkiv</string>
+	<string>PL</string>
+	<string>Aeroper</string>
+	<string>FK</string>
+	<string>Africa West</string>
+	<string>QS</string>
+	<string>African Safari Airways</string>
+	<string>ML</string>
+	<string>African Transport Trading and Investment Company</string>
+	<string>ZI</string>
+	<string>Aigle Azur</string>
+	<string>RK</string>
+	<string>Air Afrique</string>
+	<string>AH</string>
+	<string>Air Algerie</string>
+	<string>GD</string>
+	<string>Air Alpha Greenland</string>
+	<string>QN</string>
+	<string>Air Armenia</string>
+	<string>KC</string>
+	<string>Air Astana</string>
+	<string>CC</string>
+	<string>Air Atlanta Icelandic</string>
+	<string>UU</string>
+	<string>Air Austral</string>
+	<string>AB</string>
+	<string>Air Berlin</string>
+	<string>BP</string>
+	<string>Air Botswana</string>
+	<string>ZB</string>
+	<string>Air Bourbon</string>
+	<string>BX</string>
+	<string>Air Busan</string>
+	<string>TY</string>
+	<string>Air Cal</string>
+	<string>SB</string>
+	<string>Air Caledonie International</string>
+	<string>AC</string>
+	<string>Air Canada</string>
+	<string>QK</string>
+	<string>Air Canada Jazz</string>
+	<string>TX</string>
+	<string>Air CaraÃ¯bes</string>
+	<string>NV</string>
+	<string>Air Central</string>
+	<string>CV</string>
+	<string>Air Chathams</string>
+	<string>CA</string>
+	<string>Air China</string>
+	<string>4F</string>
+	<string>Air City</string>
+	<string>QD</string>
+	<string>Air Class Lineas Aereas</string>
+	<string>AG</string>
+	<string>Air Contractors</string>
+	<string>QC</string>
+	<string>Air Corridor</string>
+	<string>XT</string>
+	<string>Air Exel</string>
+	<string>PC</string>
+	<string>Air Fiji</string>
+	<string>OF</string>
+	<string>Air Finland</string>
+	<string>AF</string>
+	<string>Air France</string>
+	<string>GN</string>
+	<string>Air Gabon</string>
+	<string>DA</string>
+	<string>Air Georgia</string>
+	<string>ZX</string>
+	<string>Air Georgian</string>
+	<string>GL</string>
+	<string>Air Greenland</string>
+	<string>HH</string>
+	<string>Air Hamburg (AHO)</string>
+	<string>LD</string>
+	<string>Air Hong Kong</string>
+	<string>IX</string>
+	<string>Air India Express</string>
+	<string>AI</string>
+	<string>Air India Limited</string>
+	<string>VU</string>
+	<string>Air Ivoire</string>
+	<string>JS</string>
+	<string>Air Koryo</string>
+	<string>VD</string>
+	<string>Air Libert</string>
+	<string>TT</string>
+	<string>Air Lithuania</string>
+	<string>NX</string>
+	<string>Air Macau</string>
+	<string>MD</string>
+	<string>Air Madagascar</string>
+	<string>NM</string>
+	<string>Air Madrid</string>
+	<string>QM</string>
+	<string>Air Malawi</string>
+	<string>KM</string>
+	<string>Air Malta</string>
+	<string>CW</string>
+	<string>Air Marshall Islands</string>
+	<string>MR</string>
+	<string>Air Mauritanie</string>
+	<string>MK</string>
+	<string>Air Mauritius</string>
+	<string>DR</string>
+	<string>Air Mediterranee</string>
+	<string>ZV</string>
+	<string>Air Midwest</string>
+	<string>9U</string>
+	<string>Air Moldova</string>
+	<string>TM</string>
+	<string>Air Mozambique</string>
+	<string>SW</string>
+	<string>Air Namibia</string>
+	<string>NZ</string>
+	<string>Air New Zealand</string>
+	<string>EH</string>
+	<string>Air Nippon Network Co. Ltd.</string>
+	<string>PX</string>
+	<string>Air Niugini</string>
+	<string>4N</string>
+	<string>Air North Charter - Canada</string>
+	<string>YW</string>
+	<string>Air Nostrum</string>
+	<string>FJ</string>
+	<string>Air Pacific</string>
+	<string>AD</string>
+	<string>Air Paradise International</string>
+	<string>2P</string>
+	<string>Air Philippines</string>
+	<string>GZ</string>
+	<string>Air Rarotonga</string>
+	<string>KY</string>
+	<string>Air S</string>
+	<string>PJ</string>
+	<string>Air Saint Pierre</string>
+	<string>HM</string>
+	<string>Air Seychelles</string>
+	<string>4D</string>
+	<string>Air Sinai</string>
+	<string>GM</string>
+	<string>Air Slovakia</string>
+	<string>RB</string>
+	<string>Air Srpska</string>
+	<string>VT</string>
+	<string>Air Tahiti</string>
+	<string>TN</string>
+	<string>Air Tahiti Nui</string>
+	<string>TC</string>
+	<string>Air Tanzania</string>
+	<string>YT</string>
+	<string>Air Togo</string>
+	<string>TS</string>
+	<string>Air Transat</string>
+	<string>JY</string>
+	<string>Air Turks and Caicos</string>
+	<string>UK</string>
+	<string>Air UK</string>
+	<string>NF</string>
+	<string>Air Vanuatu</string>
+	<string>ZW</string>
+	<string>Air Wisconsin</string>
+	<string>UM</string>
+	<string>Air Zimbabwe</string>
+	<string>ED</string>
+	<string>Airblue</string>
+	<string>GB</string>
+	<string>Airborne Express</string>
+	<string>4Y</string>
+	<string>Airbus France</string>
+	<string>IJ</string>
+	<string>AirLibertÃ©</string>
+	<string>TL</string>
+	<string>Airnorth</string>
+	<string>PL</string>
+	<string>Airstars</string>
+	<string>2D</string>
+	<string>Alaniya Airlines</string>
+	<string>AS</string>
+	<string>Alaska Airlines</string>
+	<string>LV</string>
+	<string>Albanian Airlines</string>
+	<string>AZ</string>
+	<string>Alitalia</string>
+	<string>NH</string>
+	<string>All Nippon Airways</string>
+	<string>QQ</string>
+	<string>Alliance Airlines</string>
+	<string>AQ</string>
+	<string>Aloha Airlines</string>
+	<string>5A</string>
+	<string>Alpine Air Express</string>
+	<string>6R</string>
+	<string>Alrosa Mirny Air Enterprise</string>
+	<string>HP</string>
+	<string>America West Airlines</string>
+	<string>AA</string>
+	<string>American Airlines</string>
+	<string>WD</string>
+	<string>Amsterdam Airlines</string>
+	<string>ZQ</string>
+	<string>Annsett New Zealand (NZA)</string>
+	<string>HO</string>
+	<string>Antinea Airlines</string>
+	<string>IW</string>
+	<string>AOM French Airlines</string>
+	<string>FG</string>
+	<string>Ariana Afghan Airlines</string>
+	<string>OR</string>
+	<string>Arkefly</string>
+	<string>IZ</string>
+	<string>Arkia Israel Airlines</string>
+	<string>MV</string>
+	<string>Armenian International Airways</string>
+	<string>JW</string>
+	<string>Arrow Air</string>
+	<string>OE</string>
+	<string>Asia Overnight Express</string>
+	<string>AW</string>
+	<string>Asian Wings Airways</string>
+	<string>OZ</string>
+	<string>Asiana Airlines</string>
+	<string>4K</string>
+	<string>Askari Aviation</string>
+	<string>8D</string>
+	<string>Astair</string>
+	<string>ER</string>
+	<string>Astar Air Cargo</string>
+	<string>5W</string>
+	<string>Astraeus</string>
+	<string>TZ</string>
+	<string>ATA Airlines</string>
+	<string>RC</string>
+	<string>Atlantic Airways</string>
+	<string>EV</string>
+	<string>Atlantic Southeast Airlines</string>
+	<string>IQ</string>
+	<string>Augsburg Airways</string>
+	<string>AU</string>
+	<string>AUOS</string>
+	<string>GR</string>
+	<string>Aurigny Air Services</string>
+	<string>AU</string>
+	<string>Austral Lineas Aereas</string>
+	<string>AO</string>
+	<string>Australian Airlines</string>
+	<string>OS</string>
+	<string>Austrian Airlines</string>
+	<string>VO</string>
+	<string>Austrian Arrows</string>
+	<string>VE</string>
+	<string>Avensa</string>
+	<string>EC</string>
+	<string>Avialeasing Aviation Company</string>
+	<string>AV</string>
+	<string>Avianca - Aerovias Nacionales de Colombia</string>
+	<string>AO</string>
+	<string>Avianova (Russia)</string>
+	<string>AD</string>
+	<string>Azul</string>
+	<string>CJ</string>
+	<string>BA CityFlyer</string>
+	<string>TH</string>
+	<string>BA Connect</string>
+	<string>UP</string>
+	<string>Bahamasair</string>
+	<string>BU</string>
+	<string>Baikotovitchestrian Airlines </string>
+	<string>LZ</string>
+	<string>Balkan Bulgarian Airlines</string>
+	<string>PG</string>
+	<string>Bangkok Airways</string>
+	<string>JV</string>
+	<string>Bearskin Lake Air Service</string>
+	<string>CH</string>
+	<string>Bemidji Airlines</string>
+	<string>GQ</string>
+	<string>Big Sky Airlines</string>
+	<string>BG</string>
+	<string>Biman Bangladesh Airlines</string>
+	<string>VB</string>
+	<string>Birmingham European</string>
+	<string>BV</string>
+	<string>Blue Panorama Airlines</string>
+	<string>BU</string>
+	<string>Blue Sky America</string>
+	<string>QW</string>
+	<string>Blue Wings</string>
+	<string>BF</string>
+	<string>Bluebird Cargo</string>
+	<string>BD</string>
+	<string>bmi</string>
+	<string>WW</string>
+	<string>bmibaby</string>
+	<string>BO</string>
+	<string>Bouraq Indonesia Airlines</string>
+	<string>7R</string>
+	<string>BRA-Transportes Aereos</string>
+	<string>BU</string>
+	<string>Braathens</string>
+	<string>BN</string>
+	<string>Braniff International Airways</string>
+	<string>GB</string>
+	<string>BRAZIL AIR</string>
+	<string>DB</string>
+	<string>Brit Air</string>
+	<string>BA</string>
+	<string>British Airways</string>
+	<string>BS</string>
+	<string>British International Helicopters</string>
+	<string>SN</string>
+	<string>Brussels Airlines</string>
+	<string>BQ</string>
+	<string>Buquebus LÃ­neas AÃ©reas</string>
+	<string>4P</string>
+	<string>Business Aviation</string>
+	<string>UK</string>
+	<string>buzz</string>
+	<string>5C</string>
+	<string>CAL Cargo Air Lines</string>
+	<string>MO</string>
+	<string>Calm Air</string>
+	<string>QC</string>
+	<string>Camair-co</string>
+	<string>UY</string>
+	<string>Cameroon Airlines</string>
+	<string>5T</string>
+	<string>Canadian North</string>
+	<string>9K</string>
+	<string>Cape Air</string>
+	<string>CV</string>
+	<string>Cargolux</string>
+	<string>BW</string>
+	<string>Caribbean Airlines</string>
+	<string>KW</string>
+	<string>Carnival Air Lines</string>
+	<string>RV</string>
+	<string>Caspian Airlines</string>
+	<string>CX</string>
+	<string>Cathay Pacific</string>
+	<string>OC</string>
+	<string>Catovair</string>
+	<string>NS</string>
+	<string>Caucasus Airlines</string>
+	<string>KX</string>
+	<string>Cayman Airways</string>
+	<string>CB</string>
+	<string>CCML Airlines</string>
+	<string>7N</string>
+	<string>Centavia</string>
+	<string>WE</string>
+	<string>Centurion Air Cargo</string>
+	<string>OP</string>
+	<string>Chalk&apos;s Ocean Airways</string>
+	<string>MG</string>
+	<string>Champion Air</string>
+	<string>2Z</string>
+	<string>Changan Airlines</string>
+	<string>RP</string>
+	<string>Chautauqua Airlines</string>
+	<string>AW</string>
+	<string>CHC Airways</string>
+	<string>CI</string>
+	<string>China Airlines</string>
+	<string>CK</string>
+	<string>China Cargo Airlines</string>
+	<string>MU</string>
+	<string>China Eastern Airlines</string>
+	<string>CJ</string>
+	<string>China Northern Airlines</string>
+	<string>WH</string>
+	<string>China Northwest Airlines</string>
+	<string>CZ</string>
+	<string>China Southern Airlines</string>
+	<string>9C</string>
+	<string>China SSS</string>
+	<string>KN</string>
+	<string>China United</string>
+	<string>OQ</string>
+	<string>Chongqing Airlines</string>
+	<string>YC</string>
+	<string>Ciel Canadien</string>
+	<string>QI</string>
+	<string>Cimber Air</string>
+	<string>CF</string>
+	<string>City Airline</string>
+	<string>WX</string>
+	<string>CityJet</string>
+	<string>QA</string>
+	<string>Click (Mexicana)</string>
+	<string>BX</string>
+	<string>Coast Air</string>
+	<string>DQ</string>
+	<string>Coastal Air</string>
+	<string>9L</string>
+	<string>Colgan Air</string>
+	<string>OH</string>
+	<string>Comair</string>
+	<string>MN</string>
+	<string>Comair</string>
+	<string>KR</string>
+	<string>Comores Airlines</string>
+	<string>GJ</string>
+	<string>Compania Mexicargo</string>
+	<string>CO</string>
+	<string>Continental Airlines</string>
+	<string>PC</string>
+	<string>Continental Airways</string>
+	<string>CO</string>
+	<string>Continental Express</string>
+	<string>CS</string>
+	<string>Continental Micronesia</string>
+	<string>CM</string>
+	<string>Copa Airlines</string>
+	<string>XK</string>
+	<string>Corse-Mediterranee</string>
+	<string>OU</string>
+	<string>Croatia Airlines</string>
+	<string>QE</string>
+	<string>Crossair Europe</string>
+	<string>CU</string>
+	<string>Cubana de AviaciÃ³n</string>
+	<string>CY</string>
+	<string>Cyprus Airways</string>
+	<string>YK</string>
+	<string>Cyprus Turkish Airlines</string>
+	<string>OK</string>
+	<string>Czech Airlines</string>
+	<string>DA</string>
+	<string>Dana Air</string>
+	<string>WD</string>
+	<string>DAS Air Cargo</string>
+	<string>DX</string>
+	<string>DAT Danish Air Transport</string>
+	<string>DI</string>
+	<string>dba</string>
+	<string>DL</string>
+	<string>Delta Air Lines</string>
+	<string>DH</string>
+	<string>Dennis Sky</string>
+	<string>AW</string>
+	<string>Dirgantara Air Service</string>
+	<string>DH</string>
+	<string>Discovery Airways</string>
+	<string>DO</string>
+	<string>Dominicana de Aviaci</string>
+	<string>KA</string>
+	<string>Dragonair</string>
+	<string>KB</string>
+	<string>Druk Air</string>
+	<string>QU</string>
+	<string>East African</string>
+	<string>DS</string>
+	<string>EasyJet (DS)</string>
+	<string>MS</string>
+	<string>Egyptair</string>
+	<string>LY</string>
+	<string>El Al Israel Airlines</string>
+	<string>EK</string>
+	<string>Emirates Airline</string>
+	<string>EM</string>
+	<string>Empire Airlines</string>
+	<string>EU</string>
+	<string>Empresa Ecuatoriana De Aviacion</string>
+	<string>7H</string>
+	<string>Era Alaska</string>
+	<string>ET</string>
+	<string>Ethiopian Airlines</string>
+	<string>EY</string>
+	<string>Etihad Airways</string>
+	<string>VE</string>
+	<string>EUjet</string>
+	<string>EH</string>
+	<string>Euro Harmony</string>
+	<string>MM</string>
+	<string>EuroAtlantic Airways</string>
+	<string>GJ</string>
+	<string>Eurofly Service</string>
+	<string>4L</string>
+	<string>Euroline</string>
+	<string>EW</string>
+	<string>Eurowings</string>
+	<string>8D</string>
+	<string>Expo Aviation</string>
+	<string>EO</string>
+	<string>Express One International</string>
+	<string>XE</string>
+	<string>ExpressJet</string>
+	<string>IH</string>
+	<string>Falcon Air (IH)</string>
+	<string>IH</string>
+	<string>Falcon Aviation</string>
+	<string>EF</string>
+	<string>Far Eastern Air Transport</string>
+	<string>FX</string>
+	<string>Federal Express</string>
+	<string>FU</string>
+	<string>Felix Airways</string>
+	<string>4S</string>
+	<string>Finalair Congo</string>
+	<string>AY</string>
+	<string>Finnair</string>
+	<string>7F</string>
+	<string>First Air</string>
+	<string>8F</string>
+	<string>Fischer Air</string>
+	<string>GM</string>
+	<string>Flitestar</string>
+	<string>3F</string>
+	<string>Fly Colombia ( Interliging Flights )</string>
+	<string>SH</string>
+	<string>Fly Me Sweden</string>
+	<string>BE</string>
+	<string>Flybe</string>
+	<string>LF</string>
+	<string>FlyNordic</string>
+	<string>BN</string>
+	<string>Forward Air International Airlines</string>
+	<string>2F</string>
+	<string>Frontier Flying Service</string>
+	<string>GY</string>
+	<string>Gabon Airlines</string>
+	<string>GP</string>
+	<string>Gadair European Airlines</string>
+	<string>GC</string>
+	<string>Gambia International Airlines</string>
+	<string>GA</string>
+	<string>Garuda Indonesia</string>
+	<string>GT</string>
+	<string>GB Airways</string>
+	<string>GR</string>
+	<string>Gemini Air Cargo</string>
+	<string>GK</string>
+	<string>Genesis</string>
+	<string>QB</string>
+	<string>Georgian National Airlines</string>
+	<string>GM</string>
+	<string>German International Air Lines</string>
+	<string>GP</string>
+	<string>Gestair</string>
+	<string>GH</string>
+	<string>Globus</string>
+	<string>GN</string>
+	<string>GNB Linhas Aereas</string>
+	<string>GK</string>
+	<string>Go One Airways</string>
+	<string>YD</string>
+	<string>Gomelavia</string>
+	<string>ZK</string>
+	<string>Great Lakes Airlines</string>
+	<string>IJ</string>
+	<string>Great Wall Airlines</string>
+	<string>XX</string>
+	<string>Greenfly</string>
+	<string>TA</string>
+	<string>Grupo TACA</string>
+	<string>GF</string>
+	<string>Gulf Air Bahrain</string>
+	<string>GY</string>
+	<string>Guyana Airways 2000</string>
+	<string>HX</string>
+	<string>Hankook Air</string>
+	<string>HN</string>
+	<string>Hankook Airline</string>
+	<string>HB</string>
+	<string>Harbor Airlines</string>
+	<string>HQ</string>
+	<string>Harmony Airways</string>
+	<string>HA</string>
+	<string>Hawaiian Airlines</string>
+	<string>HP</string>
+	<string>Hawaiian Pacific Airlines</string>
+	<string>HN</string>
+	<string>Heavylift Cargo Airlines</string>
+	<string>8H</string>
+	<string>Heli France</string>
+	<string>JB</string>
+	<string>Helijet</string>
+	<string>ZU</string>
+	<string>Helios Airways</string>
+	<string>HT</string>
+	<string>Hellenic Imperial Airways</string>
+	<string>DU</string>
+	<string>Hemus Air</string>
+	<string>EO</string>
+	<string>Hewa Bora Airways</string>
+	<string>UD</string>
+	<string>Hex&apos;Air</string>
+	<string>HD</string>
+	<string>Hokkaido International Airlines</string>
+	<string>MR</string>
+	<string>Homer Air</string>
+	<string>HX</string>
+	<string>Hong Kong Airlines</string>
+	<string>UO</string>
+	<string>Hong Kong Express Airways</string>
+	<string>HH</string>
+	<string>Hope Air</string>
+	<string>QX</string>
+	<string>Horizon Air</string>
+	<string>BN</string>
+	<string>Horizon Airlines</string>
+	<string>IB</string>
+	<string>Iberia Airlines</string>
+	<string>TY</string>
+	<string>Iberworld</string>
+	<string>FI</string>
+	<string>Icelandair</string>
+	<string>DH</string>
+	<string>Independence Air</string>
+	<string>IC</string>
+	<string>Indian Airlines</string>
+	<string>6E</string>
+	<string>IndiGo Airlines</string>
+	<string>QZ</string>
+	<string>Indonesia AirAsia</string>
+	<string>IO</string>
+	<string>Indonesian Airlines</string>
+	<string>IJ</string>
+	<string>InteliJet Airways</string>
+	<string>ZA</string>
+	<string>Interavia Airlines</string>
+	<string>ID</string>
+	<string>Interlink Airlines</string>
+	<string>IR</string>
+	<string>Iran Air</string>
+	<string>IA</string>
+	<string>Iraqi Airways</string>
+	<string>WP</string>
+	<string>Island Air (WP)</string>
+	<string>IF</string>
+	<string>Islas Airways</string>
+	<string>WC</string>
+	<string>Islena De Inversiones</string>
+	<string>9X</string>
+	<string>Itali Airlines</string>
+	<string>GI</string>
+	<string>Itek Air</string>
+	<string>JC</string>
+	<string>JAL Express</string>
+	<string>JD</string>
+	<string>Japan Air System</string>
+	<string>JL</string>
+	<string>Japan Airlines</string>
+	<string>JL</string>
+	<string>Japan Airlines Domestic</string>
+	<string>EG</string>
+	<string>Japan Asia Airways</string>
+	<string>ZX</string>
+	<string>Japan Regio</string>
+	<string>NU</string>
+	<string>Japan Transocean Air</string>
+	<string>JU</string>
+	<string>Jat Airways</string>
+	<string>VJ</string>
+	<string>Jatayu Airlines</string>
+	<string>9W</string>
+	<string>Jet Airways</string>
+	<string>8J</string>
+	<string>Jet4You</string>
+	<string>JF</string>
+	<string>Jetairfly</string>
+	<string>B6</string>
+	<string>JetBlue Airways</string>
+	<string>JQ</string>
+	<string>Jetstar Airways</string>
+	<string>JX</string>
+	<string>Jett8 Airlines Cargo</string>
+	<string>GX</string>
+	<string>Jetx Airlines</string>
+	<string>3B</string>
+	<string>JobAir</string>
+	<string>JR</string>
+	<string>Joy Air</string>
+	<string>HO</string>
+	<string>Juneyao Airlines</string>
+	<string>JX</string>
+	<string>Jusur airways</string>
+	<string>RQ</string>
+	<string>Kam Air</string>
+	<string>KV</string>
+	<string>Kavminvodyavia</string>
+	<string>KD</string>
+	<string>KD Avia</string>
+	<string>KQ</string>
+	<string>Kenya Airways</string>
+	<string>KY</string>
+	<string>Kibris T</string>
+	<string>IT</string>
+	<string>Kingfisher Airlines</string>
+	<string>KP</string>
+	<string>Kiwi International Air Lines</string>
+	<string>WA</string>
+	<string>KLM Cityhopper</string>
+	<string>KL</string>
+	<string>KLM Royal Dutch Airlines</string>
+	<string>8J</string>
+	<string>Komiinteravia</string>
+	<string>KE</string>
+	<string>Korean Air</string>
+	<string>7B</string>
+	<string>Krasnojarsky Airlines</string>
+	<string>KY</string>
+	<string>KSY</string>
+	<string>GW</string>
+	<string>Kuban Airlines</string>
+	<string>VD</string>
+	<string>Kunpeng Airlines</string>
+	<string>KU</string>
+	<string>Kuwait Airways</string>
+	<string>GO</string>
+	<string>Kuzu Airlines Cargo</string>
+	<string>MJ</string>
+	<string>L</string>
+	<string>JF</string>
+	<string>L.A.B. Flying Service</string>
+	<string>LR</string>
+	<string>LACSA</string>
+	<string>LA</string>
+	<string>LAN Airlines</string>
+	<string>QV</string>
+	<string>Lao Airlines</string>
+	<string>NG</string>
+	<string>Lauda Air</string>
+	<string>LI</string>
+	<string>Leeward Islands Air Transport</string>
+	<string>LN</string>
+	<string>Libyan Arab Airlines</string>
+	<string>LD</string>
+	<string>Linea Turistica Aerotuy</string>
+	<string>LM</string>
+	<string>Linhas A</string>
+	<string>LM</string>
+	<string>Livingston</string>
+	<string>LB</string>
+	<string>Lloyd Aereo Boliviano</string>
+	<string>ZQ</string>
+	<string>Locair</string>
+	<string>LO</string>
+	<string>LOT Polish Airlines</string>
+	<string>PQ</string>
+	<string>LSM Airlines</string>
+	<string>YZ</string>
+	<string>LSM AIRLINES </string>
+	<string>LT</string>
+	<string>LTU International</string>
+	<string>HE</string>
+	<string>Luftfahrtgesellschaft Walter</string>
+	<string>LH</string>
+	<string>Lufthansa</string>
+	<string>LH</string>
+	<string>Lufthansa Cargo</string>
+	<string>CL</string>
+	<string>Lufthansa CityLine</string>
+	<string>LG</string>
+	<string>Luxair</string>
+	<string>CC</string>
+	<string>Macair Airlines</string>
+	<string>DM</string>
+	<string>Maersk</string>
+	<string>MA</string>
+	<string>MalÃ©v</string>
+	<string>MH</string>
+	<string>Malaysia Airlines</string>
+	<string>ML</string>
+	<string>Maldivo Airlines</string>
+	<string>TF</string>
+	<string>MalmÃ¶ Aviation</string>
+	<string>AE</string>
+	<string>Mandarin Airlines</string>
+	<string>JE</string>
+	<string>Mango</string>
+	<string>8M</string>
+	<string>Maxair</string>
+	<string>IG</string>
+	<string>Meridiana</string>
+	<string>MZ</string>
+	<string>Merpati Nusantara Airlines</string>
+	<string>YV</string>
+	<string>Mesa Airlines</string>
+	<string>XJ</string>
+	<string>Mesaba Airlines</string>
+	<string>7P</string>
+	<string>Metro Batavia</string>
+	<string>MX</string>
+	<string>Mexicana de Aviaci</string>
+	<string>GL</string>
+	<string>Miami Air International</string>
+	<string>OM</string>
+	<string>MIAT Mongolian Airlines</string>
+	<string>ME</string>
+	<string>Middle East Airlines</string>
+	<string>JI</string>
+	<string>Midway Airlines</string>
+	<string>YX</string>
+	<string>Midwest Airlines</string>
+	<string>ZB</string>
+	<string>Monarch Airlines</string>
+	<string>YM</string>
+	<string>Montenegro Airlines</string>
+	<string>3R</string>
+	<string>Moskovia Airlines</string>
+	<string>NM</string>
+	<string>Mount Cook Airlines</string>
+	<string>UB</string>
+	<string>Myanma Airways</string>
+	<string>8M</string>
+	<string>Myanmar Airways International</string>
+	<string>XY</string>
+	<string>Nas Air</string>
+	<string>UE</string>
+	<string>Nasair</string>
+	<string>NC</string>
+	<string>National Jet Systems</string>
+	<string>ON</string>
+	<string>Nauru Air Corporation</string>
+	<string>RA</string>
+	<string>Nepal Airlines</string>
+	<string>EJ</string>
+	<string>New England Airlines</string>
+	<string>HG</string>
+	<string>Niki</string>
+	<string>KZ</string>
+	<string>Nippon Cargo Airlines</string>
+	<string>NC</string>
+	<string>Northern Air Cargo</string>
+	<string>NW</string>
+	<string>Northwest Airlines</string>
+	<string>DY</string>
+	<string>Norwegian Air Shuttle</string>
+	<string>VC</string>
+	<string>Ocean Airlines</string>
+	<string>OA</string>
+	<string>Olympic Airlines</string>
+	<string>WY</string>
+	<string>Oman Air</string>
+	<string>OI</string>
+	<string>Orchid Airlines</string>
+	<string>QO</string>
+	<string>Origin Pacific Airways</string>
+	<string>OL</string>
+	<string>Ostfriesische Lufttransport</string>
+	<string>ON</string>
+	<string>Our Airline</string>
+	<string>OJ</string>
+	<string>Overland Airways</string>
+	<string>OZ</string>
+	<string>Ozark Air Lines</string>
+	<string>DJ</string>
+	<string>Pacific Blue</string>
+	<string>8P</string>
+	<string>Pacific Coastal Airline</string>
+	<string>VB</string>
+	<string>Pacific Express</string>
+	<string>LW</string>
+	<string>Pacific Wings</string>
+	<string>GX</string>
+	<string>Pacificair</string>
+	<string>PK</string>
+	<string>Pakistan International Airlines</string>
+	<string>5P</string>
+	<string>Pal airlines</string>
+	<string>GP</string>
+	<string>Palau Trans Pacific Airline</string>
+	<string>PF</string>
+	<string>Palestinian Airlines</string>
+	<string>NR</string>
+	<string>Pamir Airways</string>
+	<string>PV</string>
+	<string>PAN Air</string>
+	<string>PQ</string>
+	<string>Panafrican Airways</string>
+	<string>WQ</string>
+	<string>PanAm World Airways</string>
+	<string>HI</string>
+	<string>Papillon Grand Canyon Helicopters</string>
+	<string>HP</string>
+	<string>Pearl Airways</string>
+	<string>PC</string>
+	<string>Pegasus Airlines</string>
+	<string>KS</string>
+	<string>Peninsula Airways</string>
+	<string>PR</string>
+	<string>Philippine Airlines</string>
+	<string>HP</string>
+	<string>Phoenix Airways</string>
+	<string>9R</string>
+	<string>Phuket Air</string>
+	<string>PI</string>
+	<string>Piedmont Airlines (1948-1989)</string>
+	<string>9E</string>
+	<string>Pinnacle Airlines</string>
+	<string>PU</string>
+	<string>PLUNA</string>
+	<string>PH</string>
+	<string>Polynesian Airlines</string>
+	<string>DJ</string>
+	<string>Polynesian Blue</string>
+	<string>PD</string>
+	<string>Porter Airlines</string>
+	<string>NI</string>
+	<string>Portugalia</string>
+	<string>BK</string>
+	<string>Potomac Air</string>
+	<string>TO</string>
+	<string>President Airlines</string>
+	<string>PF</string>
+	<string>Primera Air</string>
+	<string>QF</string>
+	<string>Qantas</string>
+	<string>QR</string>
+	<string>Qatar Airways</string>
+	<string>R6</string>
+	<string>RACSA</string>
+	<string>4X</string>
+	<string>Red Jet Mexico</string>
+	<string>WZ</string>
+	<string>Red Wings</string>
+	<string>3C</string>
+	<string>RegionsAir</string>
+	<string>QQ</string>
+	<string>Reno Air</string>
+	<string>RY</string>
+	<string>Reno Sky</string>
+	<string>SL</string>
+	<string>Rio Sul Servi</string>
+	<string>FV</string>
+	<string>Rossiya-Russian Airlines</string>
+	<string>VJ</string>
+	<string>Royal Air Cambodge</string>
+	<string>AT</string>
+	<string>Royal Air Maroc</string>
+	<string>BI</string>
+	<string>Royal Brunei Airlines</string>
+	<string>RL</string>
+	<string>Royal Falcon</string>
+	<string>RJ</string>
+	<string>Royal Jordanian</string>
+	<string>RK</string>
+	<string>Royal Khmer Airlines</string>
+	<string>RA</string>
+	<string>Royal Nepal Airlines</string>
+	<string>WR</string>
+	<string>Royal Tongan Airlines</string>
+	<string>WB</string>
+	<string>Rwandair Express</string>
+	<string>FR</string>
+	<string>Ryanair</string>
+	<string>EH</string>
+	<string>SAETA</string>
+	<string>SZ</string>
+	<string>Salzburg arrows</string>
+	<string>MM</string>
+	<string>SAM Colombia</string>
+	<string>ZS</string>
+	<string>Sama Airlines</string>
+	<string>SP</string>
+	<string>SATA Air Acores</string>
+	<string>9R</string>
+	<string>SATENA</string>
+	<string>SV</string>
+	<string>Saudi Arabian Airlines</string>
+	<string>SK</string>
+	<string>Scandinavian Airlines System</string>
+	<string>8S</string>
+	<string>Scorpio Aviation</string>
+	<string>BB</string>
+	<string>Seaborne Airlines</string>
+	<string>YR</string>
+	<string>SENIC AIRLINES</string>
+	<string>8D</string>
+	<string>Servant Air</string>
+	<string>NL</string>
+	<string>Shaheen Air International</string>
+	<string>SC</string>
+	<string>Shandong Airlines</string>
+	<string>FM</string>
+	<string>Shanghai Airlines</string>
+	<string>SH</string>
+	<string>Sharp Airlines</string>
+	<string>ZP</string>
+	<string>Silk Way Airlines</string>
+	<string>SQ</string>
+	<string>Singapore Airlines</string>
+	<string>SQ</string>
+	<string>Singapore Airlines Cargo</string>
+	<string>XS</string>
+	<string>SITA</string>
+	<string>XW</string>
+	<string>Sky Express</string>
+	<string>SX</string>
+	<string>Skybus Airlines</string>
+	<string>BC</string>
+	<string>Skymark Airlines</string>
+	<string>JZ</string>
+	<string>Skyways Express</string>
+	<string>OO</string>
+	<string>SkyWest</string>
+	<string>IE</string>
+	<string>Solomon Airlines</string>
+	<string>SA</string>
+	<string>South African Airways</string>
+	<string>WN</string>
+	<string>Southwest Airlines</string>
+	<string>NK</string>
+	<string>Spirit Airlines</string>
+	<string>SM</string>
+	<string>Spirit of Manila Airlines</string>
+	<string>UL</string>
+	<string>SriLankan Airlines</string>
+	<string>SJ</string>
+	<string>Sriwijaya Air</string>
+	<string>DZ</string>
+	<string>Starline.kz</string>
+	<string>NB</string>
+	<string>Sterling Airlines</string>
+	<string>8F</string>
+	<string>STP Airways</string>
+	<string>VC</string>
+	<string>Strategic Airlines</string>
+	<string>CB</string>
+	<string>Suckling Airways</string>
+	<string>SD</string>
+	<string>Sudan Airways</string>
+	<string>PI</string>
+	<string>Sun Air (Fiji)</string>
+	<string>7L</string>
+	<string>Sun D&apos;Or</string>
+	<string>XQ</string>
+	<string>SunExpress</string>
+	<string>PY</string>
+	<string>Surinam Airways</string>
+	<string>WV</string>
+	<string>Swe Fly</string>
+	<string>VD</string>
+	<string>SwedJet Airways</string>
+	<string>SM</string>
+	<string>Swedline Express</string>
+	<string>LX</string>
+	<string>Swiss International Air Lines</string>
+	<string>SR</string>
+	<string>Swissair</string>
+	<string>RB</string>
+	<string>Syrian Arab Airlines</string>
+	<string>IJ</string>
+	<string>T.A.T</string>
+	<string>DT</string>
+	<string>TAAG Angola Airlines</string>
+	<string>VR</string>
+	<string>TACV</string>
+	<string>7J</string>
+	<string>Tajik Air</string>
+	<string>PZ</string>
+	<string>TAM Mercosur</string>
+	<string>EQ</string>
+	<string>TAME</string>
+	<string>QT</string>
+	<string>TAMPA</string>
+	<string>SH</string>
+	<string>TAN-SAHSA</string>
+	<string>TQ</string>
+	<string>Tandem Aero</string>
+	<string>TP</string>
+	<string>TAP Portugal</string>
+	<string>RO</string>
+	<string>Tarom</string>
+	<string>TQ</string>
+	<string>Texas Wings</string>
+	<string>TG</string>
+	<string>Thai Airways International</string>
+	<string>FQ</string>
+	<string>Thomas Cook Airlines</string>
+	<string>BY</string>
+	<string>Thomsonfly</string>
+	<string>TR</string>
+	<string>Tiger Airways</string>
+	<string>TT</string>
+	<string>Tiger Airways Australia</string>
+	<string>TL</string>
+	<string>Trans Mediterranean Airlines</string>
+	<string>AX</string>
+	<string>Trans States Airlines</string>
+	<string>TW</string>
+	<string>Trans World Airlines</string>
+	<string>TO</string>
+	<string>Transavia France</string>
+	<string>HV</string>
+	<string>Transavia Holland</string>
+	<string>TH</string>
+	<string>TransBrasil Airlines</string>
+	<string>UE</string>
+	<string>Transeuropean Airlines</string>
+	<string>YO</string>
+	<string>TransHolding System</string>
+	<string>TH</string>
+	<string>Transmile Air Services</string>
+	<string>IJ</string>
+	<string>Transport AÃ©rien TransrÃ©gional</string>
+	<string>TJ</string>
+	<string>Transportes AÃ©reos Nacionales de Selva</string>
+	<string>OF</string>
+	<string>Transports et Travaux A</string>
+	<string>9T</string>
+	<string>Transwest Air</string>
+	<string>TB</string>
+	<string>TrasBrasil</string>
+	<string>QS</string>
+	<string>Travel Service</string>
+	<string>GY</string>
+	<string>Tri-MG Intra Asia Airlines</string>
+	<string>8R</string>
+	<string>TRIP Linhas A</string>
+	<string>TB</string>
+	<string>TUI Airlines Belgium</string>
+	<string>TU</string>
+	<string>Tunisair</string>
+	<string>YI</string>
+	<string>TUR Avrupa Hava YollarÃ„Â±</string>
+	<string>TK</string>
+	<string>Turkish Airlines</string>
+	<string>TW</string>
+	<string>Tway Airlines</string>
+	<string>UA</string>
+	<string>United Airlines</string>
+	<string>5X</string>
+	<string>United Parcel Service</string>
+	<string>US</string>
+	<string>US Airways</string>
+	<string>UT</string>
+	<string>UTair Aviation</string>
+	<string>HY</string>
+	<string>Uzbekistan Airways</string>
+	<string>VA</string>
+	<string>V Australia Airlines</string>
+	<string>VF</string>
+	<string>Valuair</string>
+	<string>LC</string>
+	<string>Varig Log</string>
+	<string>VP</string>
+	<string>VASP</string>
+	<string>VM</string>
+	<string>Viaggio Air</string>
+	<string>VA</string>
+	<string>Viasa</string>
+	<string>VN</string>
+	<string>Vietnam Airlines</string>
+	<string>NN</string>
+	<string>VIM Airlines</string>
+	<string>VX</string>
+	<string>Virgin America</string>
+	<string>VS</string>
+	<string>Virgin Atlantic Airways</string>
+	<string>DJ</string>
+	<string>Virgin Australia</string>
+	<string>DJ</string>
+	<string>Virgin Blue</string>
+	<string>TV</string>
+	<string>Virgin Express</string>
+	<string>VK</string>
+	<string>Virgin Nigeria Airways</string>
+	<string>VH</string>
+	<string>Virgin Pacific</string>
+	<string>XF</string>
+	<string>Vladivostok Air</string>
+	<string>VG</string>
+	<string>VLM Airlines</string>
+	<string>VE</string>
+	<string>Volare Airlines</string>
+	<string>VI</string>
+	<string>Volga-Dnepr Airlines</string>
+	<string>VC</string>
+	<string>Voyageur Airways</string>
+	<string>RG</string>
+	<string>VRG Linhas Aereas</string>
+	<string>WJ</string>
+	<string>WebJet Linhas A</string>
+	<string>2W</string>
+	<string>Welcome Air</string>
+	<string>WA</string>
+	<string>Western Airlines</string>
+	<string>WS</string>
+	<string>WestJet</string>
+	<string>WF</string>
+	<string>WiderÃ¸e</string>
+	<string>WM</string>
+	<string>Windward Islands Airways</string>
+	<string>IW</string>
+	<string>Wings Air</string>
+	<string>1P</string>
+	<string>Worldspan</string>
+	<string>SE</string>
+	<string>XL Airways France</string>
+	<string>YL</string>
+	<string>Yamal Airlines</string>
+	<string>IY</string>
+	<string>Yemenia</string>
+	<string>YT</string>
+	<string>Yeti Airways</string>
+	<string>3Q</string>
+	<string>Yunnan Airlines</string>
+	<string>ZP</string>
+	<string>Zabaykalskii Airlines</string>
+	<string>3J</string>
+	<string>Zip</string>
+</array>
+</plist>
