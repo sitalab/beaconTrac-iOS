@@ -10,14 +10,14 @@
 
 #ifndef BeaconTrac_Constants_h
     #define BeaconTrac_Constants_h
-    #define FlurryKey   @"JC85M9XX362R39J2FDCQ"
-    #define googleMapSDK @"AIzaSyC8-nH5kYP0LqG57KEWpGYsiNTOVwOo0fk"
+    #define FlurryKey   @"your_flurry_key"
+    #define googleMapSDK @"your_google_map_key"
 
-    #define BeaconAPIKey   @"4b20e1947194bead13795d4f9db34408"
-    #define appId   @"1a01dea1"
+    #define BeaconAPIKey   @"your_beacon_api_key"
+    #define appId   @"your_beacon_app_id_key"
 
-    #define SIN_BeaconAPIKey   @"b01cda0f263dd31ac91bb4948134967a"
-    #define SIN_appId   @"cab19a23"
+    #define SIN_BeaconAPIKey   @"your_beacon_api_key"
+    #define SIN_appId   @"your_beacon_app_id_key"
 
     #define AirportURL  @"https://cube.api.aero/atibeacon/airports/4/"
     #define beaconsUrl  @"https://cube.api.aero/atibeacon/beacons/1"
