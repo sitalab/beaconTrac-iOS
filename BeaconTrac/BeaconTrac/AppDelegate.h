@@ -28,7 +28,10 @@
 @property (retain, nonatomic) NSMutableArray *arrayOfBeaconsRanged;
 @property (retain, nonatomic) NSMutableArray *arrayOfUniqueUUIDs;
 @property (retain, nonatomic) NSMutableArray *arrayOfUniqueMajorIDs;
-@property (retain, nonatomic) NSMutableDictionary *brandNamesToUUIDs;
+@property (retain, nonatomic) NSMutableDictionary *regionsBeingMonitored;
+
+//@property (retain, nonatomic) NSMutableDictionary *brandNamesToUUIDs;
+
 @property (retain, nonatomic) CollectionViewController *collectionViewController;
 @property (retain, nonatomic) ControlViewController *leftViewController ;
 @property (retain, nonatomic) MapViewController *rightViewController;
@@ -56,5 +59,13 @@
 -(void) showBeaconsAfterPaxModify;
 -(void) changeAirprot :(NSString *) airportCode;
 -(void) updateRegionGranularity:(int) isOn;
+
+@end
+
+@interface RegionBeingMonitored : NSObject
+
+@property NSString *uuid;
+@property NSNumber *majorId;
+@property NSNumber *minorId;
 
 @end

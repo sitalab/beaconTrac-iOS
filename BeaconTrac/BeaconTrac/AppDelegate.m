@@ -10,6 +10,7 @@
 #import "MFSideMenuContainerViewController.h"
 #import "HTTPRequestCreator.h"
 #import "AppConstants.h"
+#import "PaxModalViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Language.h"
 #import "Flurry.h"
@@ -50,7 +51,7 @@
     self.arrayOfBeacons = [[NSMutableArray alloc] init];
     self.arrayOfBeaconsRanged = [[NSMutableArray alloc] init];
     self.arrayOfUniqueUUIDs = [[NSMutableArray alloc] init];
-    self.brandNamesToUUIDs = [[NSMutableDictionary alloc] init];
+    self.regionsBeingMonitored = [[NSMutableDictionary alloc] init];
     self.arrayOfUniqueMajorIDs = [[NSMutableArray alloc] init];
     locationManager = [[CLLocationManager alloc] init];
     if ([locationManager respondsToSelector:
@@ -362,26 +363,16 @@
             [self.rightViewController setMapInControlView:[beacons[0] objectForKey:@"latitude"] :[beacons[0] objectForKey:@"longitude"] ];
         
         _arrayOfUniqueUUIDs = [[NSMutableArray alloc] init];
-        _brandNamesToUUIDs = [[NSMutableDictionary alloc] init];
         _arrayOfUniqueMajorIDs = [[NSMutableArray alloc] init];
         for (id currBeaconObj in beacons) {
             if( ![_arrayOfUniqueUUIDs containsObject:[currBeaconObj objectForKey:@"uuid"]] ){
                 [_arrayOfUniqueUUIDs addObject:[currBeaconObj objectForKey:@"uuid"]];
-                if( [currBeaconObj objectForKey:@"brandName"] )
-                    [_brandNamesToUUIDs setValue:[currBeaconObj objectForKey:@"brandName"] forKey:[currBeaconObj objectForKey:@"uuid"]];
-                else
-                    [_brandNamesToUUIDs setValue:@"Unknown" forKey:[currBeaconObj objectForKey:@"uuid"]];
             }
             
             NSString *UUIDMajor = @"";
             UUIDMajor = [NSString stringWithFormat:@"%@ %@", [currBeaconObj objectForKey:@"uuid"], [currBeaconObj objectForKey:@"majorId"] ];
             if( ![_arrayOfUniqueMajorIDs containsObject: UUIDMajor] ){
                 [_arrayOfUniqueMajorIDs addObject:UUIDMajor];
-                
-                if( [currBeaconObj objectForKey:@"brandName"] )
-                    [_brandNamesToUUIDs setValue:[currBeaconObj objectForKey:@"brandName"] forKey:UUIDMajor];
-                else
-                    [_brandNamesToUUIDs setValue:@"Unknown" forKey:[currBeaconObj objectForKey:@"uuid"]];
             }
         }
         
@@ -392,7 +383,6 @@
         
         NSLog(@"%@",beacons);
         NSLog(@"Unique Beacons: %@",_arrayOfUniqueUUIDs);
-        NSLog(@"UUIDs to Brands: %@", _brandNamesToUUIDs);
         NSLog(@"Unique Majors: %@", _arrayOfUniqueMajorIDs);
         
         if([self.leftViewController.paxLabel.text isEqualToString:@""])
@@ -402,7 +392,7 @@
         
         if(_noPaxByDefault == 1){
             self.collectionViewController.regionGranularityOn = 1;
-            _regionGranularity = 1;
+            _regionGranularity = REGION_UUID_MAJORID;
         }
         
         if( _noPaxByDefault == 0){
@@ -421,10 +411,24 @@
                 [self.leftViewController.locationsTableView reloadData];
             }else{
                 if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"2"]){
-                    _regionGranularity = 2;
+                    _regionGranularity = REGION_UUID_MAJORID_MINORID;
                     for (int i = 0; i < _arrayOfBeacons.count; i++) {
                         NSDictionary *item = [_arrayOfBeacons objectAtIndex:i];
+                        
                         CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:[item objectForKey:@"uuid"]] major:[[item objectForKey:@"majorId"] integerValue] minor:[[item objectForKey:@"minorId"] integerValue] identifier:[NSString stringWithFormat:@"BeaconTReg%d", i]];
+
+                        NSString *regionsBeingMonitoredKey = @"";
+                        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[region.proximityUUID UUIDString], region.major, region.minor ];
+
+                        
+                        NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
+                        [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
+                        [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
+                        [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
+                        [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
+                        [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
+
+                        [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
                         
                         region.notifyOnEntry = TRUE;
                         region.notifyOnExit = TRUE;
@@ -432,9 +436,22 @@
                         [locationManager startMonitoringForRegion:region];
                     }
                 }else if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"0"]){
-                        _regionGranularity = 0;
+                        _regionGranularity = REGION_UUID;
                         for (int i = 0; i < _arrayOfUniqueUUIDs.count; i++) {
                             CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:_arrayOfUniqueUUIDs[i]] identifier:[NSString stringWithFormat:@"BeaconTReg%d", i]];
+
+                            NSString *regionsBeingMonitoredKey = @"";
+                            regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",[region.proximityUUID UUIDString]];
+
+                            NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
+                            [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
+                            [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
+                            [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
+                            [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
+                            [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
+                            [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
+
+                            
                             region.notifyOnEntry = TRUE;
                             region.notifyOnExit = TRUE;
                             region.notifyEntryStateOnDisplay = YES;
@@ -451,6 +468,19 @@
                         region.notifyOnExit = TRUE;
                         region.notifyEntryStateOnDisplay = YES;
                         [locationManager startMonitoringForRegion:region];
+                        
+                        NSString *regionsBeingMonitoredKey = @"";
+                        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",[region.proximityUUID UUIDString], region.major  ];
+
+                        NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
+                        [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
+                        [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
+                        [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
+                        [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
+                        [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
+                        [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
+
+                        
                     }
                 }
             }

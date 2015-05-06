@@ -75,21 +75,21 @@
             _regionSwitch.on =  FALSE;
         
         if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"0"]){
-            _regionGranularitySwitch = 0;
+            _regionGranularitySwitch = REGION_UUID;
             _granularityLabel.text = @"UUID";
         }
         else if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"1"]){
-            _regionGranularitySwitch = 1;
+            _regionGranularitySwitch = REGION_UUID_MAJORID;
             _granularityLabel.text = @"UUID + MajorID";
         }else{
-            _regionGranularitySwitch = 2;
+            _regionGranularitySwitch = REGION_UUID_MAJORID_MINORID;
             _granularityLabel.text = @"UUID + MajorID + MinorID";
         }
     }else{
         _granularityLabel.text = @"UUID + MajorID";
         [_notificationsSwitch setOn:FALSE];
         [_regionSwitch setOn:TRUE];
-        _regionGranularitySwitch = 1;
+        _regionGranularitySwitch = REGION_UUID_MAJORID;
     }
     
     if( [[UIScreen mainScreen] bounds].size.height == 480 ){
@@ -150,7 +150,7 @@
     else
         [profileObj setObject:@"0" forKey:@"regionNotification"];
     
-    if( _regionGranularitySwitch == 0 ){
+    if( _regionGranularitySwitch == REGION_UUID ){
         [profileObj setObject:@"0" forKey:@"regionGranularity"];
         _granularityLabel.text = @"UUID";
     }
@@ -181,19 +181,19 @@
     
     int isOn = 0;
     
-    if( _regionGranularitySwitch == 0 ){
+    if( _regionGranularitySwitch == REGION_UUID ){
         [profileObj setObject:@"0" forKey:@"regionGranularity"];
         _granularityLabel.text = @"UUID";
-        isOn = 0;
+        isOn = REGION_UUID;
     }
-    else if(_regionGranularitySwitch == 1 ){
+    else if(_regionGranularitySwitch == REGION_UUID_MAJORID ){
         [profileObj setObject:@"1" forKey:@"regionGranularity"];
         _granularityLabel.text = @"UUID + MajorID";
-        isOn = 1;
+        isOn = REGION_UUID_MAJORID;
     }else{
         [profileObj setObject:@"2" forKey:@"regionGranularity"];
         _granularityLabel.text = @"UUID + MajorID + MinorID";
-        isOn = 2;
+        isOn = REGION_UUID_MAJORID_MINORID;
     }
     
     [AppDelegate WriteProfile:profileObj];
@@ -270,6 +270,8 @@
 #pragma mark Table View Functions
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    //NSLog(@"%@",Longtitude);
+    
     if( [AppDelegate sharedAppDelegate].regionGranularity == 0 ){
         _monitoredCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs.count];
         return [AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs.count;
@@ -292,6 +294,9 @@
 {
     static NSString *MyIdentifier = @"MyIdentifier";
     
+   // NSLog(@"cellForRowAtIndexPath");
+    
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     
     if (cell == nil)
@@ -300,15 +305,47 @@
                                       reuseIdentifier:MyIdentifier];
     }
     
-    if( [AppDelegate sharedAppDelegate].regionGranularity == 0 )
-        cell.textLabel.text = [[AppDelegate sharedAppDelegate].brandNamesToUUIDs objectForKey:[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[indexPath.row]];
-    else if( [AppDelegate sharedAppDelegate].regionGranularity == 1 ){
+    cell.textLabel.font = [UIFont systemFontOfSize:10];
+
+    
+    //for(id key in [AppDelegate sharedAppDelegate].regionsBeingMonitored)
+    //    NSLog(@"key=%@ value=%@", key, [[AppDelegate sharedAppDelegate].regionsBeingMonitored objectForKey:key]);
+
+    /**
+     get the region info for this region, which will tell us if we are inside/outside the region
+     */
+    NSString *regionsBeingMonitoredKey = @"";
+    if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID ) {
+        NSArray *uuid = [[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[indexPath.row] componentsSeparatedByString:@" "];
+        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",uuid];
+    }
+    else if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID ) {
+        NSArray *uuidMajor = [[AppDelegate sharedAppDelegate].arrayOfUniqueMajorIDs[indexPath.row] componentsSeparatedByString:@" "];
+        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",uuidMajor[0], uuidMajor[1]];
+    }
+    else {
+        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@", [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"uuid"], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"majorId"], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"minorId"]];
+    }
+    NSMutableDictionary *regionInfo = [[AppDelegate sharedAppDelegate].regionsBeingMonitored objectForKey:regionsBeingMonitoredKey];
+
+    
+    
+    if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID ) {
+        cell.textLabel.text = [NSString stringWithFormat:@"Airport UUID\nState: %@", [regionInfo objectForKey:@"state"]]; //[[AppDelegate sharedAppDelegate].brandNamesToUUIDs objectForKey:[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[indexPath.row]];
+        cell.textLabel.numberOfLines = 2;
+    }
+    else if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID ){
         
         NSArray *uuidMajor = [[AppDelegate sharedAppDelegate].arrayOfUniqueMajorIDs[indexPath.row] componentsSeparatedByString:@" "];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [[AppDelegate sharedAppDelegate].brandNamesToUUIDs objectForKey:[AppDelegate sharedAppDelegate].arrayOfUniqueMajorIDs[indexPath.row]], uuidMajor[1]];
+        //cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [[AppDelegate sharedAppDelegate].brandNamesToUUIDs objectForKey:[AppDelegate sharedAppDelegate].arrayOfUniqueMajorIDs[indexPath.row]], uuidMajor[1]];
+        cell.textLabel.text = [NSString stringWithFormat:@"Airport UUID - %@ \n%@. \nState: %@", uuidMajor[1], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"beaconType"], [regionInfo objectForKey:@"state"]];
+        cell.textLabel.numberOfLines = 3;
     }
-    else
-        cell.textLabel.text = [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"name"];
+    else {
+        cell.textLabel.text = [NSString stringWithFormat:@"Name - %@ \n%@. \nState: %@", [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"name"], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"beaconType"], [regionInfo objectForKey:@"state"]];
+        cell.textLabel.numberOfLines = 3;
+    }
+
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 1)];

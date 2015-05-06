@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *noBeaconsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *infoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *rangingLabel;
+@property (strong, nonatomic) IBOutlet UIButton *rangingButton;
 @property (strong, nonatomic) IBOutlet UIImageView *infoIcon;
 @property (assign) int regionGranularityOn;
 @property (assign) int firstRangingFlag;

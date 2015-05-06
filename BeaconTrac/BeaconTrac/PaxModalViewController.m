@@ -104,15 +104,15 @@
     if( recognizer.view.tag == 0 ){
         _uuidRegion.accessoryType = UITableViewCellAccessoryCheckmark;
         self.Beacondelegate.granularityLabel.text = _uuidRegion.textLabel.text;
-        self.Beacondelegate.regionGranularitySwitch = 0;
+        self.Beacondelegate.regionGranularitySwitch = REGION_UUID;
     }else if(recognizer.view.tag == 1){
         _majorRegion.accessoryType = UITableViewCellAccessoryCheckmark;
         self.Beacondelegate.granularityLabel.text = _majorRegion.textLabel.text;
-        self.Beacondelegate.regionGranularitySwitch = 1;
+        self.Beacondelegate.regionGranularitySwitch = REGION_UUID_MAJORID;
     }else{
         _minorRegion.accessoryType = UITableViewCellAccessoryCheckmark;
         self.Beacondelegate.granularityLabel.text = _minorRegion.textLabel.text;
-        self.Beacondelegate.regionGranularitySwitch = 2;
+        self.Beacondelegate.regionGranularitySwitch = REGION_UUID_MAJORID_MINORID;
     }
     [self.Beacondelegate changeRegionGranularity];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -179,9 +179,9 @@
                 else
                     [profileObj setObject:@"0" forKey:@"regionNotification"];
                 
-                if(self.Beacondelegate.regionGranularitySwitch == 0)
+                if(self.Beacondelegate.regionGranularitySwitch == REGION_UUID)
                     [profileObj setObject:@"0" forKey:@"regionGranularity"];
-                else if(self.Beacondelegate.regionGranularitySwitch == 1)
+                else if(self.Beacondelegate.regionGranularitySwitch == REGION_UUID_MAJORID)
                     [profileObj setObject:@"1" forKey:@"regionGranularity"];
                 else
                     [profileObj setObject:@"2" forKey:@"regionGranularity"];

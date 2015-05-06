@@ -30,4 +30,9 @@
 - (IBAction)DismissModal:(id)sender;
 - (IBAction)SaveModal:(id)sender;
 
+// Defines for region granualarity
+#define REGION_UUID                 0
+#define REGION_UUID_MAJORID         1
+#define REGION_UUID_MAJORID_MINORID 2
+
 @end
