@@ -13,6 +13,7 @@
 #import "AppConstants.h"
 #import "PaxModalViewController.h"
 #import "Language.h"
+#import "ToastView.h"
 #import <CoreLocation/CoreLocation.h>
 #import "HTTPRequestCreator.h"
 #import <CoreBluetooth/CBCentralManager.h>
@@ -346,6 +347,12 @@ static NSString *cellId2 = @"cellId2";
     _rangingLabel.text = @"Not Ranging...";
 }
 
+- (void)stopRangingTimer{
+    if(rangingTimer != nil){
+        [rangingTimer invalidate];
+        rangingTimer = nil;
+    }
+}
 - (void)startRangingTimer{
     if(rangingTimer != nil){
         [rangingTimer invalidate];
@@ -404,7 +411,7 @@ static NSString *cellId2 = @"cellId2";
         }
 
         
-        
+        /*
         for (CLBeaconRegion *monitoredRegion in [_locationManager rangedRegions])
             [_locationManager stopRangingBeaconsInRegion:monitoredRegion];
         
@@ -427,7 +434,7 @@ static NSString *cellId2 = @"cellId2";
                 });
                 
             [self startRangingTimer];
-        }
+        }*/
         
         [[AppDelegate sharedAppDelegate].leftViewController.locationsTableView reloadData];
     }
@@ -458,6 +465,8 @@ static NSString *cellId2 = @"cellId2";
         _region = beaconRegion;
         [self showRangingLabel];
         
+        
+        
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
             [_locationManager startRangingBeaconsInRegion:_region];
         else
@@ -465,7 +474,7 @@ static NSString *cellId2 = @"cellId2";
                 [_locationManager startRangingBeaconsInRegion:_region];
             });
 
-        [self startRangingTimer];
+        /*[self startRangingTimer]; */
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
             [self didEnterRegionActions:beaconRegion];
@@ -516,16 +525,17 @@ static NSString *cellId2 = @"cellId2";
     
     [AppDelegate addLog: logsRegionName];
     
+    NSString *message = @"";
+    
     if(((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).regionSwitch.isOn){
         
         if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID){
-            UILocalNotification *notification = [UILocalNotification new];
             
             //NSMutableDictionary *regionsBeingMonitored = [AppDelegate sharedAppDelegate].regionsBeingMonitored;
             //NSMutableDictionary *regionInfo = [regionsBeingMonitored objectForKey:beaconRegion.identifier];
             
-            notification.alertBody = [NSString stringWithFormat:@"Entered %@ region", logsRegionName];//[regionInfo objectForKey:@"regionName"]];
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            message = [NSString stringWithFormat:@"Entered %@ region", logsRegionName];//[regionInfo objectForKey:@"regionName"]];
+            
         }else if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID_MINORID){
             NSString *regionName = @"";
             if( [AppDelegate sharedAppDelegate].arrayOfBeacons.count > 0 ){
@@ -540,23 +550,31 @@ static NSString *cellId2 = @"cellId2";
                         regionName = [NSString stringWithFormat:@"Entered %@", [[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"name"]];
                     }
                 }
-                UILocalNotification *notification = [UILocalNotification new];
-                notification.alertBody = regionName;
-                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                
+                message = regionName;
+                
             }
         }else{
-            NSString *regionName = @"";
+
             if( ![MAjorsDictionary objectForKey:[beaconRegion.major stringValue]] )
-                regionName = [NSString stringWithFormat:@"You have entered an unknown zone (%@)", beaconRegion.major];
+                message = [NSString stringWithFormat:@"You have entered an unknown zone (%@)", beaconRegion.major];
             else
-                regionName = [NSString stringWithFormat:@"You have entered a %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
+                message = [NSString stringWithFormat:@"You have entered a %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
             
+        }
+        
+        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+            // app is in foreground
+            [ToastView showToastInParentView:self.view withText:message withDuaration:3.0];
+            
+        } else {
+            // App is in background
             UILocalNotification *notification = [UILocalNotification new];
-            notification.alertBody = regionName;
+            notification.alertBody = message;
             [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
         }
     }
-        NSLog(@"didEnterRegionActions entered 2");
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
@@ -564,11 +582,6 @@ static NSString *cellId2 = @"cellId2";
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
         NSLog(@"didExitRegion UUID:%@ Major:%@ MinorD:%@", beaconRegion.proximityUUID.UUIDString , beaconRegion.major, beaconRegion.minor);
-
-        if(rangingTimer != nil){
-            [rangingTimer invalidate];
-            rangingTimer = nil;
-        }
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
             [self didExitRegionActions:beaconRegion];
@@ -599,10 +612,12 @@ static NSString *cellId2 = @"cellId2";
     
     if(((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).regionSwitch.isOn){
         
+            NSString *message = @"";
+        
         if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID){
-            UILocalNotification *notification = [UILocalNotification new];
-            notification.alertBody = [NSString stringWithFormat:@"Exited %@ region", logsRegionName];
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            
+            message = [NSString stringWithFormat:@"Exited %@ region", logsRegionName];
+            
         }else if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID_MINORID){
             NSString *regionName = @"";
             if( [AppDelegate sharedAppDelegate].arrayOfBeacons.count > 0 ){
@@ -618,23 +633,28 @@ static NSString *cellId2 = @"cellId2";
                         regionName = [NSString stringWithFormat:@"Exited %@", [[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"name"]];
                     }
                 }
-                UILocalNotification *notification = [UILocalNotification new];
-                notification.alertBody = regionName;
-                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-            
+                message = regionName;
             }
         }else{
-            NSString *regionName = @"";
             if( ![MAjorsDictionary objectForKey:[beaconRegion.major stringValue]] )
-                regionName = [NSString stringWithFormat:@"You have exited an unknown zone (%@)", beaconRegion.major];
+                message = [NSString stringWithFormat:@"You have exited an unknown zone (%@)", beaconRegion.major];
             else
-                regionName = [NSString stringWithFormat:@"You have exited %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
+                message = [NSString stringWithFormat:@"You have exited %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
+        }
+        
+        
+        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+            // app is in foreground
+            [ToastView showToastInParentView:self.view withText:message withDuaration:3.0];
+            
+        } else {
+            // App is in background
             UILocalNotification *notification = [UILocalNotification new];
-            notification.alertBody = regionName;
+            notification.alertBody = message;
             [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
         }
     }
-    NSLog(@"didExitRegionActions entered 2");
+
 }
 
 - (void) locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
@@ -1477,7 +1497,9 @@ static NSString *cellId2 = @"cellId2";
 
 - (IBAction)btnStopRanging:(id)sender {
    NSLog(@"btnStopRanging");
+   [ToastView showToastInParentView:self.view withText:@"Stopping ranging..." withDuaration:3.0];
    [self stopBeaconsRanging];
+   [self stopRangingTimer];
     
 }
 
@@ -1490,15 +1512,17 @@ static NSString *cellId2 = @"cellId2";
 
 -(void)startRangingForAirportUUID {
     
-    NSLog(@"startRangingForAirportUUID");
+
     /**
      * Assumption is that there is only one UUID per airport
      */
     _region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[0]] identifier:[NSString stringWithFormat:@"BeaconTReg%d", 0]];
-    
-    
+
+    NSLog(@"startRangingForAirportUUID %@", _region);
+    [ToastView showToastInParentView:self.view withText:@"Starting ranging..." withDuaration:3.0];
     [self stopBeaconsRanging];
     [self startRanging];
+    [self startRangingTimer];
     
 }
 

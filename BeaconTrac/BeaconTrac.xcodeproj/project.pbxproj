@@ -105,6 +105,7 @@
 		18F7D50B18E30E30004A7B4D /* dialCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7D50A18E30E30004A7B4D /* dialCell2.xib */; };
 		18F7D50F18E31771004A7B4D /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7D50E18E31771004A7B4D /* PulsingHaloLayer.m */; };
 		18F7D51118E321C4004A7B4D /* icon-beacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7D51018E321C4004A7B4D /* icon-beacon.png */; };
+		244BCE171AFA84F7007B4CEF /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 244BCE161AFA84F7007B4CEF /* ToastView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,6 +272,8 @@
 		18F7D51018E321C4004A7B4D /* icon-beacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-beacon.png"; sourceTree = "<group>"; };
 		244BCE121AFA2B16007B4CEF /* AppConstantsTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstantsTemplate.h; path = BeaconTrac/AppConstantsTemplate.h; sourceTree = "<group>"; };
 		244BCE141AFA2C7D007B4CEF /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstants.h; path = BeaconTrac/AppConstants.h; sourceTree = "<group>"; };
+		244BCE151AFA84AF007B4CEF /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		244BCE161AFA84F7007B4CEF /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,6 +596,8 @@
 				182BA0B5190EAE0800CE7B11 /* PaxModalViewController.m */,
 				182BA0B6190EAE0800CE7B11 /* PaxModalViewController.xib */,
 				1823660C1913AF2A0011512C /* BeaconCellView.xib */,
+				244BCE151AFA84AF007B4CEF /* ToastView.h */,
+				244BCE161AFA84F7007B4CEF /* ToastView.m */,
 			);
 			path = BeaconTrac;
 			sourceTree = "<group>";
@@ -767,6 +772,7 @@
 				1813ABF518E6BB4F0024B138 /* ASIS3ObjectRequest.m in Sources */,
 				1813ABF618E6BB4F0024B138 /* ASIS3Request.m in Sources */,
 				182B54DD19335C5B000E1F8C /* QSStrings.m in Sources */,
+				244BCE171AFA84F7007B4CEF /* ToastView.m in Sources */,
 				18F7D4F318E2F335004A7B4D /* AWCollectionViewDialLayout.m in Sources */,
 				1813ABEE18E6BB4F0024B138 /* ASIDownloadCache.m in Sources */,
 				1813ABF418E6BB4F0024B138 /* ASIS3BucketRequest.m in Sources */,
