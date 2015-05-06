@@ -337,7 +337,7 @@
             _BeaconKey = BeaconAPIKey;
             _BeaconAppId = appId;
             
-            NSString *listOfBeaconsUrl=[NSString stringWithFormat:@"%@?UserName=ziad@itx.net&airportCode=%@&app_id=%@&app_key=%@",beaconsUrl,self.mainAirport,_BeaconAppId,_BeaconKey];
+            NSString *listOfBeaconsUrl=[NSString stringWithFormat:@"%@?airportCode=%@&app_id=%@&app_key=%@",beaconsUrl,self.mainAirport,_BeaconAppId,_BeaconKey];
 
             [HTTPRequestCreator prepareAndCallHTTP_GET_RequestWithURL:[NSURL URLWithString:listOfBeaconsUrl] AndRequestType:@"get" AndDelegate:self AndSuccessSelector:@selector(requestBeaconsSearchDone:) AndFailSelector:@selector(requestBeaconsSearchWentWrong:)];
             NSLog(@"requestAirportSearchDone: 3");
@@ -913,7 +913,7 @@
             BeaconAppIdPOST = appId;
         }
         
-        NSString *postBeaconFoundToAPI = [NSString stringWithFormat:@"%@/%@?ignoreMe&flightNumber=%@&flightDate=%@&deviceIdentifier=%@&app_id=%@&app_key=%@",
+        NSString *postBeaconFoundToAPI = [NSString stringWithFormat:@"%@/%@?flightNumber=%@&flightDate=%@&deviceIdentifier=%@&app_id=%@&app_key=%@",
                                           beaconsUrl,
                                           [AppDelegate sharedAppDelegate].mainAirport,
                                           flight,

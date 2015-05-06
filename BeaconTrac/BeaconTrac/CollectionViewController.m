@@ -917,21 +917,29 @@ static NSString *cellId2 = @"cellId2";
     [AppDelegate addLog:[NSString stringWithFormat:@"Beacon Found: %@", DesccriptiveText]];
     
     if( ((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).notificationsSwitch.isOn ){
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.alertBody = DesccriptiveText;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
         
+        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+            // app is in foreground
+            [ToastView showToastInParentView:self.view withText:DesccriptiveText withDuaration:3.0];
+        } else {
+            UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+            localNotification.alertBody = DesccriptiveText;
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        }
         //UILocalNotification *notification = [UILocalNotification new];
         //notification.alertBody = DesccriptiveText;
         //[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
+    
+    [ToastView showToastInParentView:self.view withText:[NSString stringWithFormat:@"Registry knows I'm at '%@'", [beacons objectForKey:@"name"]] withDuaration:3.0];
 }
 
 - (void)postBeaconsWentWrong:(ASIHTTPRequest *)request
 {
     [HTTPRequestCreator logEndRESTAPICall:request];
     NSLog(@"postBeaconsWentWrong : %@",[request error]);
+    [ToastView showToastInParentView:self.view withText:[NSString stringWithFormat:@"Error sending beacon hit to server %@",[request error]] withDuaration:3.0];
 }
 
 - (void) stopBeaconsRanging{
