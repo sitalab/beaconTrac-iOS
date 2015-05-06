@@ -265,7 +265,6 @@
 		18C65577190A532A00CD9D5E /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		18C65578190A532A00CD9D5E /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		18C6557A190A532A00CD9D5E /* CollectionViewController_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController_iphone.xib; sourceTree = "<group>"; };
-		18C6557B190A532A00CD9D5E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = BeaconTrac/Constants.h; sourceTree = "<group>"; };
 		18C6557C190A532A00CD9D5E /* ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlViewController.h; sourceTree = "<group>"; };
 		18C6557D190A532A00CD9D5E /* ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlViewController.m; sourceTree = "<group>"; };
 		18C6557E190A532A00CD9D5E /* ControlViewController_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlViewController_iphone.xib; sourceTree = "<group>"; };
@@ -287,6 +286,7 @@
 		18F7D50D18E31771004A7B4D /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = PulsingHalo/PulsingHaloLayer.h; sourceTree = "<group>"; };
 		18F7D50E18E31771004A7B4D /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = PulsingHalo/PulsingHaloLayer.m; sourceTree = "<group>"; };
 		18F7D51018E321C4004A7B4D /* icon-beacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-beacon.png"; sourceTree = "<group>"; };
+		244BCE111AFA2A6C007B4CEF /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstants.h; path = BeaconTrac/AppConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,8 +628,8 @@
 		18C6559D190BB09200CD9D5E /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				244BCE111AFA2A6C007B4CEF /* AppConstants.h */,
 				182BA0AD190EACBA00CE7B11 /* AirlineCodesArray.plist */,
-				18C6557B190A532A00CD9D5E /* Constants.h */,
 				182BA0B9190F918100CE7B11 /* Profile.plist */,
 				182B54C6192F49A8000E1F8C /* BTracLogs.plist */,
 				180DDC4B1A010CF400257DCB /* BeaconsLogs.plist */,
@@ -726,7 +726,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = ITXi;
+				ORGANIZATIONNAME = "SITA ";
 				TargetAttributes = {
 					1867F03D18E2BEA2000A4104 = {
 						DevelopmentTeam = 5Z4HN8AW3H;
