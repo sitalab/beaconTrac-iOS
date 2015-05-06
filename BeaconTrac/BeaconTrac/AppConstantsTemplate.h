@@ -29,5 +29,5 @@
     #define Stale_BeaconColor @"ff9500"
     #define NotInRange_BeaconColor @"898c90"
     #define arrayOfLocactions   [NSArray arrayWithObjects:@"ITXI",@"SITA_ATL",@"SITA_BTN",@"SITA_GVA","CPH",nil]
-    #define MAjorsDictionary @{ @"1000":@"CheckinDesk", @"1100":@"Waypoint",@"1200":@"Gate",@"1300":@"Retail",@"1400":@"BaggageHall",@"1500":@"Lounge",@"1600":@"SecurityZone",@"1700":@"CarPark",@"1800":@"Exit",@"1900":@"SalesOffice",@"2000":@"Restaurant",@"2100":@"Other"}
+    #define MAjorsDictionary @{ @"1000":@"CheckinDesk", @"1100":@"Waypoint",@"1200":@"Gate",@"1300":@"Retail",@"1400":@"BaggageHall",@"1500":@"Lounge",@"1600":@"SecurityZone",@"1700":@"CarPark",@"1800":@"Exit",@"1900":@"SalesOffice",@"2000":@"Restaurant",@"2100":@"Other",@"2200":@"TransitZone",@"2300":@"ArrivalsHall",@"2400":@"Kiosk",@"2500":@"Ramp"}
 #endif

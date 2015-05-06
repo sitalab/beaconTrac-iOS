@@ -924,6 +924,10 @@ static NSString *cellId2 = @"cellId2";
 {
     ((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).inRegistryCountLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)[AppDelegate sharedAppDelegate].arrayOfBeacons.count];
     
+    NSLog(@"Initiating a Beacon Range to kickstart everything");
+    [self startRangingForAirportUUID];
+    
+    
     if( _regionGranularityOn == REGION_UUID_MAJORID_MINORID ){
         if([[AppDelegate sharedAppDelegate] arrayOfBeacons].count > 0){
             for (int i = 0; i < [[AppDelegate sharedAppDelegate] arrayOfBeacons].count; i++) {
@@ -1473,14 +1477,20 @@ static NSString *cellId2 = @"cellId2";
 
 - (IBAction)btnStopRanging:(id)sender {
    NSLog(@"btnStopRanging");
-     [self stopBeaconsRanging];
+   [self stopBeaconsRanging];
     
 }
 
 - (IBAction)btnStartRanging:(id)sender{
-        NSLog(@"btnStartRanging");
+    NSLog(@"btnStartRanging");
     
+    [self startRangingForAirportUUID];
+    
+}
 
+-(void)startRangingForAirportUUID {
+    
+    NSLog(@"startRangingForAirportUUID");
     /**
      * Assumption is that there is only one UUID per airport
      */
@@ -1489,6 +1499,7 @@ static NSString *cellId2 = @"cellId2";
     
     [self stopBeaconsRanging];
     [self startRanging];
+    
 }
 
 @end

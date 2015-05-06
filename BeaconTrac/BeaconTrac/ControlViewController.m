@@ -306,7 +306,7 @@
     }
     
     cell.textLabel.font = [UIFont systemFontOfSize:10];
-
+    
     
     //for(id key in [AppDelegate sharedAppDelegate].regionsBeingMonitored)
     //    NSLog(@"key=%@ value=%@", key, [[AppDelegate sharedAppDelegate].regionsBeingMonitored objectForKey:key]);

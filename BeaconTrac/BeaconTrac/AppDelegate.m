@@ -81,6 +81,20 @@
                                                     rightMenuViewController:self.rightViewController];
     self.window.rootViewController = container;
     [self.window makeKeyAndVisible];
+    
+    NSLog(@"Removing all monitored regions");
+    for (CLBeaconRegion *monitoredRegion in [locationManager monitoredRegions]) {
+        NSLog(@"Monitoring UUID=%@ major=%@ minor=%@",monitoredRegion.proximityUUID.UUIDString, monitoredRegion.major, monitoredRegion.minor);
+        [locationManager stopMonitoringForRegion:monitoredRegion];
+    }
+
+    NSLog(@"Current monitored regions (should be empty):");
+    for (CLBeaconRegion *monitoredRegion in [locationManager monitoredRegions]) {
+        NSLog(@"Monitoring UUID=%@ major=%@ minor=%@",monitoredRegion.proximityUUID.UUIDString, monitoredRegion.major, monitoredRegion.minor);
+    }
+
+    
+    
     return YES;
 }
 
