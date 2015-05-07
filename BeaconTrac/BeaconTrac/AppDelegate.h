@@ -29,6 +29,7 @@
 @property (retain, nonatomic) NSMutableArray *arrayOfUniqueUUIDs;
 @property (retain, nonatomic) NSMutableArray *arrayOfUniqueMajorIDs;
 @property (retain, nonatomic) NSMutableDictionary *regionsBeingMonitored;
+@property (retain, nonatomic) NSMutableDictionary *regionsBeingRanged;
 
 //@property (retain, nonatomic) NSMutableDictionary *brandNamesToUUIDs;
 

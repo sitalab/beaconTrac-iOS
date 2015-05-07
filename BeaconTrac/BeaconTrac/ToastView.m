@@ -11,8 +11,8 @@
 @implementation ToastView
 @synthesize textLabel = _textLabel;
 
-float const ToastHeight = 50.0f;
-float const ToastGap = 10.0f;
+float const ToastHeight = 40.0f;
+float const ToastGap = 7.0f;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -31,7 +31,7 @@ float const ToastGap = 10.0f;
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.textColor = [UIColor whiteColor];
         _textLabel.numberOfLines = 2;
-        _textLabel.font = [UIFont systemFontOfSize:13.0];
+        _textLabel.font = [UIFont systemFontOfSize:11.0];
         _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
         [self addSubview:_textLabel];
         

@@ -1,4 +1,4 @@
- //
+//
 //  CollectionViewController.m
 //  BeaconTrac
 //
@@ -35,7 +35,7 @@
 @end
 
 @interface CollectionViewController () <CLLocationManagerDelegate>
-    @property (nonatomic, strong) NSArray *beaconsArray;
+@property (nonatomic, strong) NSArray *beaconsArray;
 @end
 
 static NSString *cellId = @"cellId";
@@ -156,9 +156,9 @@ static NSString *cellId2 = @"cellId2";
     // Do any additional setup after loading the view.
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(menuStateEventOccurred:)
-        name:MFSideMenuStateNotificationEvent
-        object:nil];
+                                             selector:@selector(menuStateEventOccurred:)
+                                                 name:MFSideMenuStateNotificationEvent
+                                               object:nil];
     
     ImmediateItems =  [[NSMutableArray alloc] init];
     Nearitems =  [[NSMutableArray alloc] init];
@@ -189,7 +189,7 @@ static NSString *cellId2 = @"cellId2";
     [_beaconsTableView setFrame:CGRectMake(0, 90, 320, [[UIScreen mainScreen] bounds].size.height-90)];
     [_beaconsTableView setFrame:CGRectMake(0, 26, 320, [[UIScreen mainScreen] bounds].size.height-26)];
     [_beaconsTableView registerNib:[UINib nibWithNibName:@"BeaconCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:cellId];
-
+    
     items = [[AppDelegate sharedAppDelegate] arrayOfBeacons];
     CGFloat radius = radiusSlider.value * 1000;
     CGFloat angularSpacing = angularSpacingSlider.value * 90;
@@ -199,11 +199,11 @@ static NSString *cellId2 = @"cellId2";
     
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
     {
-         radius = radiusSlider.value * 1000;
-         angularSpacing = angularSpacingSlider.value * 90;
-         xOffset = xOffsetSlider.value * 320;
-         cell_width = 480;
-         cell_height = 200;
+        radius = radiusSlider.value * 1000;
+        angularSpacing = angularSpacingSlider.value * 90;
+        xOffset = xOffsetSlider.value * 320;
+        cell_width = 480;
+        cell_height = 200;
     }
     
     _beaconsTableView.backgroundColor = [UIColor clearColor];
@@ -221,7 +221,6 @@ static NSString *cellId2 = @"cellId2";
     [self.view bringSubviewToFront:_rangingButton];
     [self.view bringSubviewToFront:_rangingView];
     
-    _firstRangingFlag = 0;
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _rangingLabel.hidden = TRUE;
 }
@@ -238,7 +237,7 @@ static NSString *cellId2 = @"cellId2";
         NSLog(@"Removing monitored region UUID=%@ major=%@ minor=%@",monitoredRegion.proximityUUID.UUIDString, monitoredRegion.major, monitoredRegion.minor);
         [_locationManager stopMonitoringForRegion:monitoredRegion];
     }
-
+    
     int regionCount=0;
     if( regionGranularity == REGION_UUID_MAJORID_MINORID ){
         if([[AppDelegate sharedAppDelegate] arrayOfBeacons].count > 0){
@@ -284,13 +283,7 @@ static NSString *cellId2 = @"cellId2";
     region.notifyEntryStateOnDisplay = YES;
     [_locationManager startMonitoringForRegion:region];
     
-    NSString *regionsBeingMonitoredKey = @"";
-    if (region.minor!=NULL)
-        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[region.proximityUUID UUIDString], region.major, region.minor ];
-    else if (region.major!=NULL)
-        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",[region.proximityUUID UUIDString], region.major ];
-    else
-        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",[region.proximityUUID UUIDString] ];
+    NSString *regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[region.proximityUUID UUIDString], region.major, region.minor ];
     NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
     [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
     [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
@@ -358,16 +351,44 @@ static NSString *cellId2 = @"cellId2";
         [rangingTimer invalidate];
         rangingTimer = nil;
     }
-    
-    rangingTimer =  [NSTimer scheduledTimerWithTimeInterval:RanginInterval target:self selector:@selector(startRanging) userInfo:nil repeats:YES];
+    [self showRangingLabel];
+    rangingTimer =  [NSTimer scheduledTimerWithTimeInterval:RanginInterval target:self selector:@selector(startRangingTimerHandler) userInfo:nil repeats:YES];
+}
+- (void) stopAllRanging{
+    [ToastView showToastInParentView:self.view withText:@"Stopping all ranging" withDuaration:2.0];
+    for (CLBeaconRegion *rangedRegion in [_locationManager rangedRegions])
+        [_locationManager stopRangingBeaconsInRegion:rangedRegion];
+    [[AppDelegate sharedAppDelegate].regionsBeingRanged removeAllObjects];
+    [self hideRangingLabel];
 }
 
-- (void)startRanging{
-    if(_region != nil){
+/**
+ * Add to the NSDictionary of regions being ranged, and start ranging.
+ */
+- (void) addRangingRegion:(CLBeaconRegion*) beaconRegion {
+    // Not already ranging for this region.
+    NSString *regionKey = [NSString stringWithFormat:@"%@/%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major, beaconRegion.minor ];
+    [ToastView showToastInParentView:self.view withText:[NSString stringWithFormat:@"Starting Ranging For %@",regionKey] withDuaration:3.0];
+    
+    [[AppDelegate sharedAppDelegate].regionsBeingRanged setObject:beaconRegion forKey:regionKey];
+    [self showRangingLabel];
+    if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+        [_locationManager startRangingBeaconsInRegion:beaconRegion];
+    else
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [_locationManager startRangingBeaconsInRegion:beaconRegion];
+        });
+}
+
+
+- (void)startRangingTimerHandler{
+    
+    for(id key in [AppDelegate sharedAppDelegate].regionsBeingRanged) {
+        NSLog(@"Timer - ranging key=%@, region=%@ ", key, [[AppDelegate sharedAppDelegate].regionsBeingRanged objectForKey:key]);
+        CLBeaconRegion* beaconRegion = [[AppDelegate sharedAppDelegate].regionsBeingRanged objectForKey:key];
         [self showRangingLabel];
-        _firstRangingFlag = 0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [_locationManager startRangingBeaconsInRegion:_region];
+            [_locationManager startRangingBeaconsInRegion:beaconRegion];
         });
     }
 }
@@ -395,17 +416,17 @@ static NSString *cellId2 = @"cellId2";
         /**
          * Get the NSDictionary entry holding the info for this region being monitored.
          */
-        NSString *regionsBeingMonitoredKey = @"";
-        if (beaconRegion.minor != NULL)
-            regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major, beaconRegion.minor ];
-        else if (beaconRegion.major != NULL)
-            regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major ];
-        else
-            regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",[beaconRegion.proximityUUID UUIDString]];
+        NSString *regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major, beaconRegion.minor ];
         NSMutableDictionary *regionsBeingMonitored = [AppDelegate sharedAppDelegate].regionsBeingMonitored;
         NSMutableDictionary *regionInfo = [regionsBeingMonitored objectForKey:regionsBeingMonitoredKey];
         if (state == CLRegionStateInside) {
             [regionInfo setObject:@"CLRegionStateInside" forKey:@"state"];
+            
+            // Add this as a region we want to do ranging in.
+            NSString *regionKey = [NSString stringWithFormat:@"%@/%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major, beaconRegion.minor ];
+            if ([[AppDelegate sharedAppDelegate].regionsBeingRanged objectForKey:regionKey] == NULL) {
+                [self addRangingRegion:beaconRegion];
+            }
         }
         else if (state == CLRegionStateOutside) {
             [regionInfo setObject:@"CLRegionStateOutside" forKey:@"state"];
@@ -413,7 +434,7 @@ static NSString *cellId2 = @"cellId2";
         else if (state == CLRegionStateUnknown) {
             [regionInfo setObject:@"CLRegionStateUnknown" forKey:@"state"];
         }
-
+        
         [[AppDelegate sharedAppDelegate].leftViewController.locationsTableView reloadData];
     }
 }
@@ -437,31 +458,14 @@ static NSString *cellId2 = @"cellId2";
         CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
         NSLog(@"didEnterRegion UUID:%@ Major:%@ MinorD:%@", beaconRegion.proximityUUID.UUIDString , beaconRegion.major, beaconRegion.minor);
         
-        for (CLBeaconRegion *currRangedRegions in [_locationManager rangedRegions])
-            [_locationManager stopRangingBeaconsInRegion:currRangedRegions];
-        _firstRangingFlag = 0;
-        _region = beaconRegion;
-        [self showRangingLabel];
-        
-        
-        
-        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
-            [_locationManager startRangingBeaconsInRegion:_region];
-        else
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [_locationManager startRangingBeaconsInRegion:_region];
-            });
-
-        /*[self startRangingTimer]; */
-        
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
             [self didEnterRegionActions:beaconRegion];
         else
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 7 * NSEC_PER_SEC), dispatch_get_main_queue(),
-            ^{
-                NSLog(@"didEnterRegionActions delayed");
-                [self didEnterRegionActions:beaconRegion];
-            });
+                           ^{
+                               NSLog(@"didEnterRegionActions delayed");
+                               [self didEnterRegionActions:beaconRegion];
+                           });
     }
 }
 
@@ -476,30 +480,6 @@ static NSString *cellId2 = @"cellId2";
         logsRegionName = [NSString stringWithFormat:@"%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major ];
     else
         logsRegionName = [NSString stringWithFormat:@"%@",[beaconRegion.proximityUUID UUIDString]];
-
-    
-  /*
-    if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID){
-        logsRegionName = [[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs valueForKey:[beaconRegion.proximityUUID UUIDString]];
-    }else if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID_MINORID){
-        if( [AppDelegate sharedAppDelegate].arrayOfBeacons.count > 0 ){
-            for(int i = 0; i < [AppDelegate sharedAppDelegate].arrayOfBeacons.count; i++)
-            {
-                NSString *currRegName = [NSString stringWithFormat:@"%@%@%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major, beaconRegion.minor ];
-                
-                NSString *regRegName = [NSString stringWithFormat:@"%@%@%@",[[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"uuid"], [[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"majorId"], [[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"minorId"] ];
-                
-                if( [currRegName isEqualToString:regRegName] ){
-                    logsRegionName =[[AppDelegate sharedAppDelegate].arrayOfBeacons[i] objectForKey:@"name"];
-                }
-            }
-        }
-    }else{
-        if( ![MAjorsDictionary objectForKey:[beaconRegion.major stringValue]] )
-            logsRegionName = [NSString stringWithFormat:@"You have entered an unknown zone (%@)", beaconRegion.major];
-        else
-            logsRegionName = [NSString stringWithFormat:@"You have entered a %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
-    }*/
     
     [AppDelegate addLog: logsRegionName];
     
@@ -508,9 +488,6 @@ static NSString *cellId2 = @"cellId2";
     if(((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).regionSwitch.isOn){
         
         if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID){
-            
-            //NSMutableDictionary *regionsBeingMonitored = [AppDelegate sharedAppDelegate].regionsBeingMonitored;
-            //NSMutableDictionary *regionInfo = [regionsBeingMonitored objectForKey:beaconRegion.identifier];
             
             message = [NSString stringWithFormat:@"Entered %@ region", logsRegionName];//[regionInfo objectForKey:@"regionName"]];
             
@@ -533,12 +510,10 @@ static NSString *cellId2 = @"cellId2";
                 
             }
         }else{
-
             if( ![MAjorsDictionary objectForKey:[beaconRegion.major stringValue]] )
                 message = [NSString stringWithFormat:@"You have entered an unknown zone (%@)", beaconRegion.major];
             else
                 message = [NSString stringWithFormat:@"You have entered a %@ zone (%@)", [MAjorsDictionary objectForKey:[beaconRegion.major stringValue]], beaconRegion.major];
-            
         }
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
@@ -563,13 +538,13 @@ static NSString *cellId2 = @"cellId2";
         
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
             [self didExitRegionActions:beaconRegion];
-
+        
         else
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 7 * NSEC_PER_SEC), dispatch_get_main_queue(),
-            ^{
-                [self didExitRegionActions:beaconRegion];
-                NSLog(@"didExitRegionActions delayed");
-            });
+                           ^{
+                               [self didExitRegionActions:beaconRegion];
+                               NSLog(@"didExitRegionActions delayed");
+                           });
     }
 }
 
@@ -585,12 +560,12 @@ static NSString *cellId2 = @"cellId2";
         logsRegionName = [NSString stringWithFormat:@"%@/%@",[beaconRegion.proximityUUID UUIDString], beaconRegion.major ];
     else
         logsRegionName = [NSString stringWithFormat:@"%@",[beaconRegion.proximityUUID UUIDString]];
-
+    
     [AppDelegate addLog:logsRegionName];
     
     if(((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).regionSwitch.isOn){
         
-            NSString *message = @"";
+        NSString *message = @"";
         
         if([AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID){
             
@@ -632,17 +607,20 @@ static NSString *cellId2 = @"cellId2";
             [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
         }
     }
-
+    
 }
 
 - (void) locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
-    if(_firstRangingFlag == 0){
+    
+    @synchronized(self) {
+        NSLog([NSString stringWithFormat:@"didRangeBeacons %@/%@/%@, %d beacons found", region.proximityUUID.UUIDString, region.major, region.minor, (int)beacons.count]);
+        
         [[AppDelegate sharedAppDelegate] addBeaconsLog:beacons];
         [self clearForBlueToothRanging];
         self.beaconsArray = beacons;
         NSMutableArray *updatedBeaconsArray = [[NSMutableArray alloc] init];
-
+        
         for(id currBeacon in beacons){
             CLBeacon *beacon = currBeacon;
             
@@ -678,7 +656,7 @@ static NSString *cellId2 = @"cellId2";
             [tempBeacon setObject:[self textForProximity:beacon.proximity] forKey:@"proximity"];
             [updatedBeaconsArray insertObject:tempBeacon atIndex:updatedBeaconsArray.count];
         }
-
+        
         for(id currBeaconFromAPI in [[AppDelegate sharedAppDelegate] arrayOfBeacons]){
             NSDictionary *item = currBeaconFromAPI;
             NSMutableDictionary *tempBeacon = [[NSMutableDictionary alloc] init];
@@ -729,7 +707,7 @@ static NSString *cellId2 = @"cellId2";
             
             [updatedBeaconsArray insertObject:tempBeacon atIndex:updatedBeaconsArray.count];
         }
-
+        
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for(int i = 0; i < updatedBeaconsArray.count; i++)
         {
@@ -767,7 +745,7 @@ static NSString *cellId2 = @"cellId2";
             if(exist == 0)
                 [tempArray insertObject:updatedBeaconsArray[i] atIndex:tempArray.count];
         }
-
+        
         NSMutableArray *ApiBeacons = [[NSMutableArray alloc] init];
         for(int i = 0; i < tempArray.count; i++)
         {
@@ -776,7 +754,7 @@ static NSString *cellId2 = @"cellId2";
             else
                 [ApiBeacons insertObject:tempArray[i] atIndex:ApiBeacons.count];
         }
-
+        
         for(int i = 0; i < tempArray.count; i++)
         {
             if(![[tempArray[i] objectForKey:@"name"] isEqualToString:@"Unregistered Beacon"] && ![[tempArray[i] objectForKey:@"proximity"] isEqualToString:@"N/A"]){
@@ -785,47 +763,47 @@ static NSString *cellId2 = @"cellId2";
                 
                 if(![_postedBeacons isEqualToString:tempUniqueSTR]){
                     _postedBeacons = tempUniqueSTR;
-                
-                NSString *flight = [((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).flightLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-                NSString *pax = ((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).paxLabel.text;
                     
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-                NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
-
-                NSString *BeaconKeyPOST = @"";
-                NSString *BeaconAppIdPOST = @"";
-                if( [[AppDelegate sharedAppDelegate].mainAirport isEqualToString:@"SIN"] ){
-                    BeaconKeyPOST = SIN_BeaconAPIKey;
-                    BeaconAppIdPOST = SIN_appId;
-                }
-                else{
-                    BeaconKeyPOST = BeaconAPIKey;
-                    BeaconAppIdPOST = appId;
-                }
+                    NSString *flight = [((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).flightLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+                    NSString *pax = ((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).paxLabel.text;
                     
-                NSString *postBeaconFoundToAPI = [NSString stringWithFormat:@"%@/%@/%@/%@/%@?ignoreMe&flightNumber=%@&flightDate=%@&passengerIdentifier=%@&measuredRSSI=%@&deviceIdentifier=%@&app_id=%@&app_key=%@",
-                beaconsUrl,
-                [AppDelegate sharedAppDelegate].mainAirport,
-                [tempArray[i] objectForKey:@"uuid"],
-                [tempArray[i] objectForKey:@"majorId"],
-                [tempArray[i] objectForKey:@"minorId"],
-                flight,
-                currentDate,
-                [pax stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                [tempArray[i] objectForKey:@"rssi"],
-                [[[UIDevice currentDevice] identifierForVendor] UUIDString],
-                BeaconAppIdPOST, BeaconKeyPOST];
-                        
-                NSLog(@"postBeaconFoundToAPI: %@", postBeaconFoundToAPI);
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+                    
+                    NSString *BeaconKeyPOST = @"";
+                    NSString *BeaconAppIdPOST = @"";
+                    if( [[AppDelegate sharedAppDelegate].mainAirport isEqualToString:@"SIN"] ){
+                        BeaconKeyPOST = SIN_BeaconAPIKey;
+                        BeaconAppIdPOST = SIN_appId;
+                    }
+                    else{
+                        BeaconKeyPOST = BeaconAPIKey;
+                        BeaconAppIdPOST = appId;
+                    }
+                    
+                    NSString *postBeaconFoundToAPI = [NSString stringWithFormat:@"%@/%@/%@/%@/%@?ignoreMe&flightNumber=%@&flightDate=%@&passengerIdentifier=%@&measuredRSSI=%@&deviceIdentifier=%@&app_id=%@&app_key=%@",
+                                                      beaconsUrl,
+                                                      [AppDelegate sharedAppDelegate].mainAirport,
+                                                      [tempArray[i] objectForKey:@"uuid"],
+                                                      [tempArray[i] objectForKey:@"majorId"],
+                                                      [tempArray[i] objectForKey:@"minorId"],
+                                                      flight,
+                                                      currentDate,
+                                                      [pax stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                                                      [tempArray[i] objectForKey:@"rssi"],
+                                                      [[[UIDevice currentDevice] identifierForVendor] UUIDString],
+                                                      BeaconAppIdPOST, BeaconKeyPOST];
+                    
+                    NSLog(@"postBeaconFoundToAPI: %@", postBeaconFoundToAPI);
                     _region =  region;
-                [HTTPRequestCreator prepareAndCallHTTP_GET_RequestWithURL:[NSURL URLWithString:postBeaconFoundToAPI] AndRequestType:@"get" AndDelegate:self AndSuccessSelector:@selector(postBeaconsDone:) AndFailSelector:@selector(postBeaconsWentWrong:)];
+                    [HTTPRequestCreator prepareAndCallHTTP_GET_RequestWithURL:[NSURL URLWithString:postBeaconFoundToAPI] AndRequestType:@"get" AndDelegate:self AndSuccessSelector:@selector(postBeaconsDone:) AndFailSelector:@selector(postBeaconsWentWrong:)];
                 }
                 break;
             }
         }
-
+        
         items = tempArray;
         
         ImmediateItems =  [[NSMutableArray alloc] init];
@@ -851,14 +829,13 @@ static NSString *cellId2 = @"cellId2";
         [AppDelegate sharedAppDelegate].arrayOfBeaconsRanged = tempArray;
         if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
             [self.beaconsTableView reloadData];
-        
+            
             [((MapViewController *)self.navigationController.menuContainerViewController.rightMenuViewController) setBeacons];
         }
         
-        [self stopBeaconsRanging];
-
+        
+        
         if ([beacons count] > 0) {
-            _firstRangingFlag = 1;
             CLBeacon *beacon = [beacons objectAtIndex:0];
             NSString *_cnt = [[NSString alloc] initWithFormat:
                               @"Number of beacons is : %lu and the first one is %f away from you",
@@ -868,11 +845,13 @@ static NSString *cellId2 = @"cellId2";
             if([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
                 ((ControlViewController *)self.navigationController.menuContainerViewController.leftMenuViewController).inRangeCountLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)[beacons count]];
             
+            //        [self delRangingRegion:region];
+            [_locationManager stopRangingBeaconsInRegion:region];
         } else {
             NSLog(@"there are no beacons in range");
         }
     }
-    [self stopBeaconsRanging];
+    
 }
 
 - (void)postBeaconsDone:(ASIHTTPRequest *)request
@@ -887,7 +866,7 @@ static NSString *cellId2 = @"cellId2";
     
     if([beacons objectForKey:@"metaData"])
         if([[beacons objectForKey:@"metaData"] objectForKey:@"descriptiveText"])
-        DesccriptiveText = [[beacons objectForKey:@"metaData"] objectForKey:@"descriptiveText"];
+            DesccriptiveText = [[beacons objectForKey:@"metaData"] objectForKey:@"descriptiveText"];
     
     if([DesccriptiveText isEqualToString:@""])
         DesccriptiveText = [NSString stringWithFormat:@"I'm the %@ beacon at %@ and I don't have descriptive text.", [beacons objectForKey:@"name"], [beacons objectForKey:@"location"]];
@@ -918,12 +897,6 @@ static NSString *cellId2 = @"cellId2";
     [HTTPRequestCreator logEndRESTAPICall:request];
     NSLog(@"postBeaconsWentWrong : %@",[request error]);
     [ToastView showToastInParentView:self.view withText:[NSString stringWithFormat:@"Error sending beacon hit to server %@",[request error]] withDuaration:3.0];
-}
-
-- (void) stopBeaconsRanging{
-    for (CLBeaconRegion *monitoredRegion in [_locationManager rangedRegions])
-        [_locationManager stopRangingBeaconsInRegion:monitoredRegion];
-    [self hideRangingLabel];
 }
 
 - (void) showBeaconsFromAPI
@@ -1109,7 +1082,7 @@ static NSString *cellId2 = @"cellId2";
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-
+    
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -1211,7 +1184,7 @@ static NSString *cellId2 = @"cellId2";
             whiteview = nil;
     if(section == 1)
         if(Nearitems.count == 0)
-           whiteview = nil;
+            whiteview = nil;
     if(section == 2)
         if(Faritems.count == 0)
             whiteview = nil;
@@ -1245,7 +1218,7 @@ static NSString *cellId2 = @"cellId2";
             item = [self.Faritems objectAtIndex:indexPath.item];
             break;
         case 3:
-             item = [self.UnknownItems objectAtIndex:indexPath.item];
+            item = [self.UnknownItems objectAtIndex:indexPath.item];
             break;
         case 4:
             item = [self.NotInRangeItems objectAtIndex:indexPath.item];
@@ -1253,22 +1226,6 @@ static NSString *cellId2 = @"cellId2";
     }
     
     NSString *Brand = [item valueForKey:@"name"];
-    //if([[item objectForKey:@"uuid"] isEqualToString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"])
-    //    Brand = @"Estimote";
-    //else if(
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"FD7B7966-9C0F-471A-83A2-46D995AE85A1"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"1AE18C1C-6C7B-4AED-B166-4462634DA855"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"9BF0D683-D4D7-441E-9A78-19461916A0D1"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"A33C916A-1871-40E2-9E0B-E914E8008DA1"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"57261C73-CF73-4A2B-9AB0-C4E1704ED597"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"114A4DD8-5B2F-4800-A079-BDCB21392BE9"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"A6702217-BDC4-45F4-8198-9B7A6E979AB3"] ||
-    //        [[item objectForKey:@"uuid"] isEqualToString:@"00051DF7-29BC-48FC-B248-2699AFAEF461"]
-    //        )
-    //    Brand = @"SticknFind";
-    //else if([[item objectForKey:@"uuid"] isEqualToString:@"61687109-905F-4436-91F8-E602F514C96D"])
-    //    Brand = @"BlueCats";
-    
     UILabel *BrandLabel = (UILabel*)[cell viewWithTag:101];
     [BrandLabel setText:Brand];
     UILabel *majorLabel = (UILabel*)[cell viewWithTag:104];
@@ -1300,22 +1257,6 @@ static NSString *cellId2 = @"cellId2";
         borderView.layer.cornerRadius = 24.5;
         
         NSString *imgURL = [item valueForKey:@"picture"];
-        //if([[item objectForKey:@"uuid"] isEqualToString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"])
-        //    imgURL =@"icon-beacon.png";
-        //else if(
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"FD7B7966-9C0F-471A-83A2-46D995AE85A1"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"1AE18C1C-6C7B-4AED-B166-4462634DA855"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"9BF0D683-D4D7-441E-9A78-19461916A0D1"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"A33C916A-1871-40E2-9E0B-E914E8008DA1"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"57261C73-CF73-4A2B-9AB0-C4E1704ED597"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"114A4DD8-5B2F-4800-A079-BDCB21392BE9"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"A6702217-BDC4-45F4-8198-9B7A6E979AB3"] ||
-        //        [[item objectForKey:@"uuid"] isEqualToString:@"00051DF7-29BC-48FC-B248-2699AFAEF461"]
-        //        )
-        //    imgURL =@"SticknFind-Icon.png.png";
-        //else if([[item objectForKey:@"uuid"] isEqualToString:@"61687109-905F-4436-91F8-E602F514C96D"])
-        //    imgURL =@"BlueCats-Icon.png";
-        
         UIImageView *imgView = (UIImageView*)[cell viewWithTag:100];
         [imgView setImage:nil];
         imgView.layer.cornerRadius = 22.5;
@@ -1362,7 +1303,7 @@ static NSString *cellId2 = @"cellId2";
         nameLabel.textColor = [self colorFromHex:hexColor];
     }
     
-
+    
     cell.contentView.tag = indexPath.item;
     [cell setBackgroundColor: [UIColor colorWithRed:256 green:256 blue:256 alpha:1.0]];
     
@@ -1404,34 +1345,29 @@ static NSString *cellId2 = @"cellId2";
 
 
 - (IBAction)btnStopRanging:(id)sender {
-   NSLog(@"btnStopRanging");
-   [ToastView showToastInParentView:self.view withText:@"Stopping ranging..." withDuaration:3.0];
-   [self stopBeaconsRanging];
-   [self stopRangingTimer];
+    NSLog(@"btnStopRanging");
+    [self stopAllRanging];
+    [self stopRangingTimer];
     
 }
 
 - (IBAction)btnStartRanging:(id)sender{
     NSLog(@"btnStartRanging");
-    
     [self startRangingForAirportUUID];
-    
 }
 
 -(void)startRangingForAirportUUID {
-    
-
     /**
      * Assumption is that there is only one UUID per airport
      */
-    _region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[0]] identifier:[NSString stringWithFormat:@"BeaconTReg%d", 0]];
-
     NSLog(@"startRangingForAirportUUID %@", _region);
-    [ToastView showToastInParentView:self.view withText:@"Starting ranging..." withDuaration:3.0];
-    [self stopBeaconsRanging];
-    [self startRanging];
-    [self startRangingTimer];
     
+    CLBeaconRegion* region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[0]] identifier:[NSString stringWithFormat:@"BeaconTReg%d", 0]];
+    
+    [ToastView showToastInParentView:self.view withText:@"Starting ranging..." withDuaration:3.0];
+    [self stopAllRanging];
+    [self addRangingRegion:region];
+    [self startRangingTimer];
 }
 
 @end

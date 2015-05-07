@@ -52,6 +52,8 @@
     self.arrayOfBeaconsRanged = [[NSMutableArray alloc] init];
     self.arrayOfUniqueUUIDs = [[NSMutableArray alloc] init];
     self.regionsBeingMonitored = [[NSMutableDictionary alloc] init];
+    self.regionsBeingRanged = [[NSMutableDictionary alloc] init];
+    
     self.arrayOfUniqueMajorIDs = [[NSMutableArray alloc] init];
     locationManager = [[CLLocationManager alloc] init];
     if ([locationManager respondsToSelector:
@@ -137,7 +139,7 @@
 }
 
 - (void) startRanging {
-    [self.collectionViewController startRanging];
+    [self.collectionViewController startRangingTimerHandler];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -289,6 +291,7 @@
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
+        [locationManager stopUpdatingLocation];
         _AppLatitude = newLocation.coordinate.latitude;
         _AppLongitude = newLocation.coordinate.longitude;
         
@@ -302,7 +305,7 @@
         
         [HTTPRequestCreator prepareAndCallHTTP_GET_RequestWithURL:[NSURL URLWithString:airportUrl] AndRequestType:@"get" AndDelegate:self AndSuccessSelector:@selector(requestAirportSearchDone:) AndFailSelector:@selector(requestAirportSearchWentWrong:)];
         // Stop Location Manager
-        [locationManager stopUpdatingLocation];
+
     }
 }
 
@@ -321,6 +324,7 @@
         if(airports.count>0)
         {
             NSLog(@"requestAirportSearchDone: 1");
+            if (self.mainAirport == NULL) {
             
             NSMutableDictionary *airportDict = [[NSMutableDictionary alloc] init];
             [airportDict setDictionary:airports[0]];
@@ -340,6 +344,7 @@
             NSString *listOfBeaconsUrl=[NSString stringWithFormat:@"%@?airportCode=%@&app_id=%@&app_key=%@",beaconsUrl,self.mainAirport,_BeaconAppId,_BeaconKey];
 
             [HTTPRequestCreator prepareAndCallHTTP_GET_RequestWithURL:[NSURL URLWithString:listOfBeaconsUrl] AndRequestType:@"get" AndDelegate:self AndSuccessSelector:@selector(requestBeaconsSearchDone:) AndFailSelector:@selector(requestBeaconsSearchWentWrong:)];
+            }
             NSLog(@"requestAirportSearchDone: 3");
             
         }else{
@@ -481,7 +486,7 @@
 {
     [self.collectionViewController appIsLoadingBeacons];
     [self.collectionViewController.navigationItem setTitle:airportCode];
-    [self.collectionViewController stopBeaconsRanging];
+    [self.collectionViewController stopAllRanging];
     
     _BeaconKey = BeaconAPIKey;
     _BeaconAppId = appId;

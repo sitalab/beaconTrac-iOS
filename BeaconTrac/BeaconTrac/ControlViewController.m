@@ -317,11 +317,11 @@
     NSString *regionsBeingMonitoredKey = @"";
     if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID ) {
         NSArray *uuid = [[AppDelegate sharedAppDelegate].arrayOfUniqueUUIDs[indexPath.row] componentsSeparatedByString:@" "];
-        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",uuid];
+        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/(null)/(null)",uuid];
     }
     else if( [AppDelegate sharedAppDelegate].regionGranularity == REGION_UUID_MAJORID ) {
         NSArray *uuidMajor = [[AppDelegate sharedAppDelegate].arrayOfUniqueMajorIDs[indexPath.row] componentsSeparatedByString:@" "];
-        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",uuidMajor[0], uuidMajor[1]];
+        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/(null)",uuidMajor[0], uuidMajor[1]];
     }
     else {
         regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@", [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"uuid"], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"majorId"], [[AppDelegate sharedAppDelegate].arrayOfBeacons [indexPath.row] objectForKey:@"minorId"]];

@@ -36,9 +36,9 @@
 - (void) appIsLoadingBeacons;
 - (void) noBeaconsLoaded;
 - (void) showBeaconsFromAPI;
-- (void) stopBeaconsRanging;
+- (void) stopAllRanging;
 - (void) startRangingTimer;
-- (void) startRanging;
+- (void) startRangingTimerHandler;
 - (void)closeMenu;
 - (void) switchToRegionGranularity;
 - (void) startRegionMonitoring:(int)regionGranularity;
