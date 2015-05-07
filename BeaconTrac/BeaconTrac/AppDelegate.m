@@ -426,76 +426,13 @@
             }else{
                 if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"2"]){
                     _regionGranularity = REGION_UUID_MAJORID_MINORID;
-                    for (int i = 0; i < _arrayOfBeacons.count; i++) {
-                        NSDictionary *item = [_arrayOfBeacons objectAtIndex:i];
-                        
-                        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:[item objectForKey:@"uuid"]] major:[[item objectForKey:@"majorId"] integerValue] minor:[[item objectForKey:@"minorId"] integerValue] identifier:[NSString stringWithFormat:@"BeaconTReg%d", i]];
-
-                        NSString *regionsBeingMonitoredKey = @"";
-                        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@/%@",[region.proximityUUID UUIDString], region.major, region.minor ];
-
-                        
-                        NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
-                        [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
-                        [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
-                        [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
-                        [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
-                        [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
-
-                        [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
-                        
-                        region.notifyOnEntry = TRUE;
-                        region.notifyOnExit = TRUE;
-                        region.notifyEntryStateOnDisplay = YES;
-                        [locationManager startMonitoringForRegion:region];
-                    }
+                    [self.collectionViewController startRegionMonitoring:_regionGranularity];
                 }else if([[profileObj objectForKey:@"regionGranularity"] isEqualToString:@"0"]){
-                        _regionGranularity = REGION_UUID;
-                        for (int i = 0; i < _arrayOfUniqueUUIDs.count; i++) {
-                            CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:_arrayOfUniqueUUIDs[i]] identifier:[NSString stringWithFormat:@"BeaconTReg%d", i]];
-
-                            NSString *regionsBeingMonitoredKey = @"";
-                            regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@",[region.proximityUUID UUIDString]];
-
-                            NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
-                            [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
-                            [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
-                            [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
-                            [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
-                            [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
-                            [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
-
-                            
-                            region.notifyOnEntry = TRUE;
-                            region.notifyOnExit = TRUE;
-                            region.notifyEntryStateOnDisplay = YES;
-                            [locationManager startMonitoringForRegion:region];
-                        }
+                    _regionGranularity = REGION_UUID;
+                    [self.collectionViewController startRegionMonitoring:_regionGranularity];
                 }else{
-                    _regionGranularity = 1;
-                    for (int i = 0; i < _arrayOfUniqueMajorIDs.count; i++) {
-                        
-                        NSArray* UUIDMajorArr = [_arrayOfUniqueMajorIDs[i] componentsSeparatedByString: @" "];
-                        
-                        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:UUIDMajorArr[0]] major: [UUIDMajorArr[1] integerValue] identifier:[NSString stringWithFormat:@"BeaconTReg%d", i]];
-                        region.notifyOnEntry = TRUE;
-                        region.notifyOnExit = TRUE;
-                        region.notifyEntryStateOnDisplay = YES;
-                        [locationManager startMonitoringForRegion:region];
-                        
-                        NSString *regionsBeingMonitoredKey = @"";
-                        regionsBeingMonitoredKey = [NSString stringWithFormat:@"%@/%@",[region.proximityUUID UUIDString], region.major  ];
-
-                        NSMutableDictionary *regionBeingMonitoredDict =[[NSMutableDictionary alloc]init];
-                        [regionBeingMonitoredDict setValue:region.proximityUUID.UUIDString forKey:@"uuid"];
-                        [regionBeingMonitoredDict setValue:region.major forKey:@"major"];
-                        [regionBeingMonitoredDict setValue:region.minor forKey:@"minor"];
-                        [regionBeingMonitoredDict setValue:region.identifier forKey:@"identifier"];
-                        [regionBeingMonitoredDict setObject:@"" forKey:@"state"];
-                        [self.regionsBeingMonitored setObject:  regionBeingMonitoredDict forKey: regionsBeingMonitoredKey];
-
-                        
-                    }
+                    _regionGranularity = REGION_UUID_MAJORID;
+                    [self.collectionViewController startRegionMonitoring:_regionGranularity];
                 }
             }
         }else{

@@ -41,6 +41,6 @@
 - (void) startRanging;
 - (void)closeMenu;
 - (void) switchToRegionGranularity;
-
+- (void) startRegionMonitoring:(int)regionGranularity;
 @end
 
